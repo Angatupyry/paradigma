@@ -9,3 +9,6 @@ class Persona(metaclass=ABCMeta):
         self.direccion = direccion
         self.contactos = []
         self.contactos.append(contacto)
+
+    def add_contacto(self, contacto):
+        self.contactos.append(contacto)
