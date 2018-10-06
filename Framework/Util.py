@@ -9,6 +9,7 @@ def cls():
 def cls():
     os.system("clear")
     print("\n\n Ingrese datos ")
+    print("\n\n Ingrese datos ")
 
 def input_range(text, men, may):
     while True:
@@ -70,3 +71,22 @@ def input_alpha_r(text):
                 raise (ValueError)
         except ValueError:
             pass
+
+def abrir(path, modo):
+    """Recibe una direccion y modo de apertura de archivo/fichero
+    y retorna el archivo"""
+    try:
+        f = open(path,modo)
+    except:
+        print("Verifique, no se pudo encontrar el archivo "+path)
+    else:
+        return f
+
+def cargar(f):
+    """Recibe un fichero con un objeto serializado, retorna el objeto"""
+    try:
+        obj = load(f)
+    except:
+        return []
+    else:
+        return obj
