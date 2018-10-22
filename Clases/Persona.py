@@ -1,11 +1,8 @@
 from abc import ABCMeta
 from Clases.Contacto import *
 
-
-# TODO MÉTODO PROM_INIT_
-
 class Persona(metaclass=ABCMeta):
-
+    """Clase padre que permite crear un objeto del tipo persona."""
     def __init__(self, cedula, nombre, apellido, direccion=None, contacto=None):
         self.cedula = cedula
         self.nombre = nombre
@@ -24,6 +21,13 @@ class Persona(metaclass=ABCMeta):
     def borrar_contacto(self, contacto):
         self.contactos.remove(contacto)
 
+    def prompt_init():
+        return dict(cedula=input_entero_r("Ingrese Cédula"),
+                    nombre=input_alpha_r("Ingrese Nombre"),
+                    apellido=input_alpha_r("Ingrese Apellido:"),
+                    direccion=input_alpha_r("Ingrese Dirección:"))
+
+    prompt_init = staticmethod(prompt_init())
 
 # ------------------------------------------------------------------
 class Empleado(Persona):
@@ -35,25 +39,18 @@ class Empleado(Persona):
         self.salario = salario
         self.__class__.cant_empleado += 1
 
+    def actualizarSalario(self,salario):
+        self.salario = salario
 
-# -------------------------------------------------------------------
-class Revertidor(Empleado):
-    def revertir_transaccion(self):
-        pass
+    def prompt_init():
+        parent_init = Persona.promp_init()
+        datos = Contato.prompt_init()
+        contacto = Contato(**datos)
+        salario = input_entero_r("Ingrese Salario")
+        parent_init.update({"Contacto": contacto,
+                            "Salario": salario})
 
-
-# -------------------------------------------------------------------
-class Jefe(Empleado):
-    """Clase extendida de la clase Empleado"""
-    cant_jefe = 0
-
-    def __init__(self, cedula, nombre, apellido, direccion, contacto=None, salario=0):
-        Empleado.__init__(cedula, nombre, apellido, direccion, contacto)
-        self.__class__.cant_jefe += 1
-
-    def revertir_transaccion(self):
-        pass
-
+        prompt_init = staticmethod(prompt_init)
 
 # ---------------------------------------------------------------------
 class Cliente(Persona):
