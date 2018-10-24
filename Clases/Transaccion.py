@@ -1,7 +1,9 @@
 from abc import ABCMeta
 
+
 class Transaccion(metaclass=ABCMeta):
     """clase que permite realizar las transacciones de las cuentas"""
+
     def __init__(self, nro_transaccion, fecha, cuenta_cliente_banco, cuenta_cliente,
                  monto, es_cheque, banco):
         self.numero_transaccino = nro_transaccion
@@ -22,8 +24,13 @@ class Deposito(Transaccion):
 class Transferencia(Transaccion):
     pass
 
+
 class Extraccion(Transaccion):
     pass
 
+
 class Reversible(Deposito):
+    def revertir(self):
+        pass
+
     pass

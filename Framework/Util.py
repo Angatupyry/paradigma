@@ -1,15 +1,20 @@
 import os
-from calendar import weekday
-from datetime import datetime, timedelta
-from pickle import load, loads, dump, dumps
+from pickle import load, dump
+import Datos.Bd as bd
 from Clases import Contacto
-def cls():
-    os.system("clear")
+
+path = "/home/fierro/Desktop/paradigma/Datos"
 
 def cls():
+    """Permite limpiar la consola de python para que sea mas comodo usarla"""
     os.system("clear")
-    print("\n\n Ingrese datos ")
-    print("\n\n Ingrese datos ")
+
+
+def cls_():
+    """Permite limpiar la consola de python para que sea mas comodo usarla
+       Muestra un mensaje"""
+    cls()
+    print("\n\n--==Ingrese datos (Campos con * son obligatorios)==--\n")
 
 def input_range(text, men, may):
     while True:
@@ -22,6 +27,7 @@ def input_range(text, men, may):
                 raise(ValueError)
         except ValueError:
             pass
+
 def input_option(text, opciones):
     """Solicita un valor, debe estar presente en la lista de opciones"""
     text += " ({})*: ".format(", ".join(opciones))
@@ -90,3 +96,42 @@ def cargar(f):
         return []
     else:
         return obj
+
+def encontrar_valor(lista, identificador, text):
+    for val in lista:
+        existe = getattr(val, identificador)
+        if str(existe) == text:
+            return val
+    return None
+
+def guardar_datos():
+    f1 = abrir(path + "/empleados", "wb")
+    dump(bd.empleados, f1)
+    f1.close()
+
+    f1 = abrir(path + "/clientes", "wb")
+    dump(bd.clientes, f1)
+    f1.close()
+
+    f1 = abrir(path + "/transacciones", "wb")
+    dump(bd.transacciones, f1)
+    f1.close()
+
+def cargar_datos():
+    f1 = abrir(path + "/empleados", "rb")
+    dump(bd.empleados, f1)
+    f1.close()
+
+    f1 = abrir(path + "/clientes", "rb")
+    dump(bd.clientes, f1)
+    f1.close()
+
+    f1 = abrir(path + "/transacciones", "rb")
+    dump(bd.transacciones, f1)
+    f1.close()
+
+def print_objeto(objeto):
+    objeto = vars(objeto)
+    for dato in objeto:
+        if objeto[dato] is not None and objeto[dato] != [None] and objeto[dato] != "":
+            print(dato[0].upper() + dato[1:] + ":", objeto[dato])

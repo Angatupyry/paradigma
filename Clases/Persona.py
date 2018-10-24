@@ -21,7 +21,7 @@ class Persona(metaclass=ABCMeta):
     def borrar_contacto(self, contacto):
         self.contactos.remove(contacto)
 
-    def prompt_init():
+    def prompt_init(self):
         return dict(cedula=input_entero_r("Ingrese Cédula"),
                     nombre=input_alpha_r("Ingrese Nombre"),
                     apellido=input_alpha_r("Ingrese Apellido:"),
@@ -42,7 +42,7 @@ class Empleado(Persona):
     def actualizarSalario(self,salario):
         self.salario = salario
 
-    def prompt_init():
+    def prompt_init(self):
         parent_init = Persona.promp_init()
         datos = Contato.prompt_init()
         contacto = Contato(**datos)
@@ -50,7 +50,7 @@ class Empleado(Persona):
         parent_init.update({"Contacto": contacto,
                             "Salario": salario})
 
-        prompt_init = staticmethod(prompt_init)
+        prompt_init = staticmethod(self.prompt_init)
 
 # ---------------------------------------------------------------------
 class Cliente(Persona):
