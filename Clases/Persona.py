@@ -27,7 +27,7 @@ class Persona(metaclass=ABCMeta):
                     apellido=input_alpha_r("Ingrese Apellido:"),
                     direccion=input_alpha_r("Ingrese Dirección:"))
 
-    prompt_init = staticmethod(prompt_init())
+   # prompt_init = staticmethod(prompt_init())
 
 # ------------------------------------------------------------------
 class Empleado(Persona):

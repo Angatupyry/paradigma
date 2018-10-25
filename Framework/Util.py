@@ -118,17 +118,17 @@ def guardar_datos():
     f1.close()
 
 def cargar_datos():
-    f1 = abrir(path + "/empleados", "rb")
-    dump(bd.empleados, f1)
-    f1.close()
+    #f1 = abrir(path + "/empleados", "rb")
+    #dump(bd.empleados, f1)
+    #f1.close()
 
     f1 = abrir(path + "/clientes", "rb")
-    dump(bd.clientes, f1)
+    bd.clientes = cargar(f1)
     f1.close()
 
-    f1 = abrir(path + "/transacciones", "rb")
-    dump(bd.transacciones, f1)
-    f1.close()
+    #f1 = abrir(path + "/transacciones", "rb")
+    #dump(bd.transacciones, f1)
+    #f1.close()
 
 def print_objeto(objeto):
     objeto = vars(objeto)

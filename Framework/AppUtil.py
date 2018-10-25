@@ -17,6 +17,8 @@ class AppUtil:
         if dato:
             self.inactivar_cliente(bd.clientes, dato)
 
+    def listar_clientes(self):
+        self.listar_datos(bd.clientes)
 
     # Funciones
     def inactivar_cliente(self, lista, dato):
@@ -30,6 +32,26 @@ class AppUtil:
         else:
             print("No se enonctró")
 
+    def listar_datos(self, lista, pausar = True):
+        """Permiste listar datos de distintas clases, el valor booleano
+        sirve para imprimir sin pasusas"""
+        if lista:
+            print()
+            cont = 1
+            for val in lista:
+                print(("-----------------=={}==-----------------".format(cont)))
+                #val.mostrar_datos()
+                print_objeto(val)
+                print()
+                if (cont % 5) is 0:
+                    if pausar:
+                        input("Presione enter para continuar...")
+                cont += 1
+            if pausar:
+                input("Presione enter para volver al menu...")
+        else:
+            input("\nSin datos. \nPresione enter para continuar...")
+
 
     # Menú
     def menu(self):
@@ -39,6 +61,11 @@ class AppUtil:
             print("-----------------------------------------------------------")
             print("--------------------MENU--PRINCIPAL------------------------")
             print()
+            for key in list(self.array_clientes.keys()):
+                print(("{} - {}".format(key, self.array_clientes[key]["t"])))
+            print()
+            opcion = input_range("Ingrese una opción", 1, self.array_clientes.__len__())
+            self.array_clientes[int(opcion)]["f"](self)
 
     # arrays de menús
     array_clientes = {}
