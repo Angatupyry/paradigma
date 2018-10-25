@@ -1,6 +1,6 @@
-from Clases.Persona import Cliente, Empleado
-from Framework.Util import *
 import Datos.Bd as bd
+from Clases.Persona import Cliente
+from Framework.Util import *
 
 
 class AppUtil:
@@ -15,13 +15,13 @@ class AppUtil:
     def inactivar_cliente(self):
         dato = encontrar_valor(bd.clientes, "cedula", input_alpha_r("Ingrese numero de cedula "))
         if dato:
-            self.inactivar_cliente(bd.clientes, dato)
+            self.inactivar(bd.clientes, dato)
 
     def listar_clientes(self):
         self.listar_datos(bd.clientes)
 
     # Funciones
-    def inactivar_cliente(self, lista, dato):
+    def inactivar(self, lista, dato):
         if lista:
             resp = input_option("Desea eliminar el dato?", "si", "no")
             if resp == "si":
@@ -32,7 +32,7 @@ class AppUtil:
         else:
             print("No se enonctró")
 
-    def listar_datos(self, lista, pausar = True):
+    def listar_datos(self, lista, pausar=True):
         """Permiste listar datos de distintas clases, el valor booleano
         sirve para imprimir sin pasusas"""
         if lista:
@@ -40,7 +40,7 @@ class AppUtil:
             cont = 1
             for val in lista:
                 print(("-----------------=={}==-----------------".format(cont)))
-                #val.mostrar_datos()
+                # val.mostrar_datos()
                 print_objeto(val)
                 print()
                 if (cont % 5) is 0:
@@ -51,7 +51,6 @@ class AppUtil:
                 input("Presione enter para volver al menu...")
         else:
             input("\nSin datos. \nPresione enter para continuar...")
-
 
     # Menú
     def menu(self):
@@ -67,9 +66,13 @@ class AppUtil:
             opcion = input_range("Ingrese una opción", 1, self.array_clientes.__len__())
             self.array_clientes[int(opcion)]["f"](self)
 
+    def salir(self):
+         exit()
+
     # arrays de menús
     array_clientes = {}
     array_clientes[1] = {"t": "Agregar cliente", "f": add_cliente}
     array_clientes[2] = {"t": "Inactivar cliente", "f": inactivar_cliente}
     array_clientes[3] = {"t": "Listar clientes", "f": listar_clientes}
     array_clientes[4] = {"t": "Volver", "f": menu}
+    array_clientes[5] = {"t": "Salir", "f": salir}

@@ -1,9 +1,10 @@
 import os
 from pickle import load, dump
-import Datos.Bd as bd
-from Clases import Contacto
 
-path = "/home/fierro/Desktop/paradigma/Datos"
+import Datos.Bd as bd
+
+#path = "/home/fierro/Desktop/paradigma/Datos"
+path = "/home/cba/Escritorio/paradigma/Datos"  # CBA
 
 def cls():
     """Permite limpiar la consola de python para que sea mas comodo usarla"""
@@ -17,14 +18,16 @@ def cls_():
     print("\n\n--==Ingrese datos (Campos con * son obligatorios)==--\n")
 
 def input_range(text, men, may):
+    """ Solicita un valor entero dentro de un rango y se devuelve
+        Se introduce el texto a mostrar y el rango de valor minimo y maximo"""
     while True:
         valor = input("{} ({}-{}) *: ".format(text, men, may))
         try:
             valor = int(valor)
-            if(valor <= may and valor >= men):
+            if (valor <= may and valor >= men):
                 return valor
             else:
-                raise(ValueError)
+                raise ValueError
         except ValueError:
             pass
 
@@ -102,7 +105,8 @@ def encontrar_valor(lista, identificador, text):
         existe = getattr(val, identificador)
         if str(existe) == text:
             return val
-    return None
+
+    return print("Cliente no encontrado")
 
 def guardar_datos():
     f1 = abrir(path + "/empleados", "wb")

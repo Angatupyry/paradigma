@@ -1,18 +1,34 @@
+from abc import ABCMeta
+
 from Framework.Util import *
 
 
-class Contato:
+class Contacto(metaclass=ABCMeta):
+    """Clase que contiene los contactos de las personas"""
+
     def __init__(self, celular=None, email=None, red_social=None):
         self.celular = celular
         self.email = email
         self.red_social = red_social
 
     def prompt_init():
-        """Se crea un diccionario con los índices de..."""
+        """Se crea un diccionario con los indices y valores necesarios para
+        instanciar al objeto"""
         return dict({
             "celular": input_alpha("Celular"),
-            "email": input_alpha("Email:"),
-            "red_social": input_alpha("Red Social:")
-        })
+            "email": input_alpha("Email"),
+            "red_social": input_alpha("Red Social")})
 
     prompt_init = staticmethod(prompt_init)
+
+
+class Telefono(Contacto):
+    pass
+
+
+class RedSocial(Contacto):
+    pass
+
+
+class Email(Contacto):
+    pass
