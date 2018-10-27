@@ -23,7 +23,7 @@ class AppUtil:
     # Funciones
     def inactivar(self, lista, dato):
         if lista:
-            resp = input_option("Desea eliminar el dato?", "si", "no")
+            resp = input_option("Desea eliminar el dato?", ("si", "no"))
             if resp == "si":
                 lista.remove(dato)
                 print("Cliente Inactivado")

@@ -5,20 +5,24 @@ class Transaccion(metaclass=ABCMeta):
     """clase que permite realizar las transacciones de las cuentas"""
 
     def __init__(self, nro_transaccion, fecha, cuenta_cliente_banco, cuenta_cliente,
-                 monto, es_cheque, banco):
-        self.numero_transaccino = nro_transaccion
+                 monto, banco):
+        self.numero_transaccion = nro_transaccion
         self.fecha = fecha
-        self.cuenta_cliente_banco = cuenta_cliente_banco
+        # self.cuenta_cliente_banco = cuenta_cliente_banco
         self.cuenta_cliente = cuenta_cliente
         self.monto = monto
-        self.banco = banco
+        # self.banco = banco
 
     def realizarTransaccion(self):
         pass
 
 
 class Deposito(Transaccion):
-    pass
+    def __init__(self, nro_transaccion, fecha, cuenta_cliente, monto):
+        super().__init__(self, nro_transaccion, fecha, cuenta_cliente, monto)
+
+    def realizarTransaccion(self, nro_cuenta, monto):
+        pass
 
 
 class Transferencia(Transaccion):

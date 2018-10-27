@@ -6,8 +6,8 @@ from Clases.Persona import *
 
 def inicializar_datos():
     """Datos precargados en el sistema"""
-    # path = "/home/fierro/Desktop/paradigma/Datos"
-    path = "/home/cba/Escritorio/paradigma/Datos"  # CBA
+    path = "/home/fierro/Desktop/paradigma/Datos"
+    #path = "/home/cba/Escritorio/paradigma/Datos"  # CBA
 
     # Clientes
     a = Cliente(3828622, "Ariel", "Curtido", "Asunción")

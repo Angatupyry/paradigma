@@ -1,4 +1,4 @@
-from abc import ABCMeta
+from abc import ABCMeta, abstractmethod
 
 from Framework.Util import *
 
@@ -21,8 +21,22 @@ class Contacto(metaclass=ABCMeta):
 
     prompt_init = staticmethod(prompt_init)
 
+    @abstractmethod
+    def agregar(self):
+        pass
+
+    @abstractmethod
+    def borrar(self):
+        pass
+
+    @abstractmethod
+    def modificar(self):
+        pass
+
 
 class Telefono(Contacto):
+    def agregar(self):
+
     pass
 
 

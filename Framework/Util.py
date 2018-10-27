@@ -3,8 +3,8 @@ from pickle import load, dump
 
 import Datos.Bd as bd
 
-#path = "/home/fierro/Desktop/paradigma/Datos"
-path = "/home/cba/Escritorio/paradigma/Datos"  # CBA
+path = "/home/fierro/Desktop/paradigma/Datos"
+#path = "/home/cba/Escritorio/paradigma/Datos"  # CBA
 
 def cls():
     """Permite limpiar la consola de python para que sea mas comodo usarla"""
