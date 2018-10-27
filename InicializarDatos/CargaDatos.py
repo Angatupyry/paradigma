@@ -2,6 +2,7 @@ from pickle import dump
 
 from Clases.Banco import *
 from Clases.Persona import *
+from Clases.CuentaBancaria import CuentaBancaria
 
 
 def inicializar_datos():
@@ -17,5 +18,11 @@ def inicializar_datos():
     bd.clientes.append(Cliente(4, "Arnaldo", "Perez", "Asunción", None, "222222222-2"))
     bd.clientes.append(Cliente(5, "Adrian", "Recalde", "Villa Elisa"))
     f = abrir(path + "/clientes", "wb")
+    dump(bd.clientes, f)
+    f.close()
+
+    # CtacteBancaroas
+    bd.clientes.append(CuentaBancaria(800, 2))
+    f = abrir(path + "/ctacteBancarias", "wb")
     dump(bd.clientes, f)
     f.close()

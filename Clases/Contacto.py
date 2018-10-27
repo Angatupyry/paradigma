@@ -36,8 +36,7 @@ class Contacto(metaclass=ABCMeta):
 
 class Telefono(Contacto):
     def agregar(self):
-
-    pass
+        pass
 
 
 class RedSocial(Contacto):

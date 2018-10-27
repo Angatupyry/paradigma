@@ -21,8 +21,9 @@ class Deposito(Transaccion):
     def __init__(self, nro_transaccion, fecha, cuenta_cliente, monto):
         super().__init__(self, nro_transaccion, fecha, cuenta_cliente, monto)
 
-    def realizarTransaccion(self, nro_cuenta, monto):
-        pass
+    def realizarTransaccion(self, monto, cuenta_bancaria):
+        self.monto = monto
+        self.cuenta_cliente = cuenta_bancaria
 
 
 class Transferencia(Transaccion):

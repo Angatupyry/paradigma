@@ -1,5 +1,6 @@
 import Datos.Bd as bd
 from Clases.Persona import Cliente
+from Clases.CuentaBancaria import CuentaBancaria
 from Framework.Util import *
 
 
@@ -19,6 +20,12 @@ class AppUtil:
 
     def listar_clientes(self):
         self.listar_datos(bd.clientes)
+
+    # Cuenta Bancaria
+    def add_cuenta_bancaria(self):
+        """Agregar una cuenta bancaria para un cliente."""
+        cls_()
+        bd.ctacteBancarias.append(CuentaBancaria.prompt_init())
 
     # Funciones
     def inactivar(self, lista, dato):
@@ -60,14 +67,32 @@ class AppUtil:
             print("-----------------------------------------------------------")
             print("--------------------MENU--PRINCIPAL------------------------")
             print()
-            for key in list(self.array_clientes.keys()):
-                print(("{} - {}".format(key, self.array_clientes[key]["t"])))
+            for key in list(self.o_principal.keys()):
+                print(("{} - {}".format(key, self.o_principal[key]["t"])))
             print()
-            opcion = input_range("Ingrese una opción", 1, self.array_clientes.__len__())
-            self.array_clientes[int(opcion)]["f"](self)
+            opcion = input_range("Ingrese una opción", 1, self.o_principal.__len__())
+            self.o_principal[int(opcion)]["f"](self)
 
     def salir(self):
-         exit()
+        exit()
+
+    def menu_list(self, text, dic):
+        """Presenta el menu con las o_principal"""
+        while True:
+            cls()
+            print(("\n------------------{}--------------------------\n".
+                   format("MENÚ --" + text)))
+            for key in list(dic.keys()):
+                print(("{} - {}".format(key, dic[key]["t"])))
+            print()
+            opcion = input_range("Ingrese una opción", 1, dic.__len__())
+            dic[int(opcion)]["f"](self)
+
+    def menu_clientes(self):
+        self.menu_list("CLIENTES", self.o_clientes)
+
+    def menu_cuentas(self):
+        self.menu_list("CUENTAS_BANCARIAS", self.o_cuentas)
 
     # arrays de menús
     array_clientes = {}
@@ -76,3 +101,10 @@ class AppUtil:
     array_clientes[3] = {"t": "Listar clientes", "f": listar_clientes}
     array_clientes[4] = {"t": "Volver", "f": menu}
     array_clientes[5] = {"t": "Salir", "f": salir}
+
+    o_cuentas = {}
+    o_cuentas[1] = {"t": "Agregar Cuenta", "f": add_cuenta_bancaria}
+
+    o_principal = {}
+    o_principal[1] = {"t": "Menú de Clientes", "f": menu_clientes}
+    o_principal[2] = {"t": "Menú de Cuentas Bancarias", "f": menu_cuentas}

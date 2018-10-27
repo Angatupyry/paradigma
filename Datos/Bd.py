@@ -1,3 +1,4 @@
 clientes = []
 empleados = []
 transacciones = []
+ctacteBancarias = []

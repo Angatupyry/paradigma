@@ -4,7 +4,9 @@ from pickle import load, dump
 import Datos.Bd as bd
 
 path = "/home/fierro/Desktop/paradigma/Datos"
-#path = "/home/cba/Escritorio/paradigma/Datos"  # CBA
+
+
+# path = "/home/cba/Escritorio/paradigma/Datos"  # CBA
 
 def cls():
     """Permite limpiar la consola de python para que sea mas comodo usarla"""
@@ -16,6 +18,7 @@ def cls_():
        Muestra un mensaje"""
     cls()
     print("\n\n--==Ingrese datos (Campos con * son obligatorios)==--\n")
+
 
 def input_range(text, men, may):
     """ Solicita un valor entero dentro de un rango y se devuelve
@@ -31,6 +34,7 @@ def input_range(text, men, may):
         except ValueError:
             pass
 
+
 def input_option(text, opciones):
     """Solicita un valor, debe estar presente en la lista de opciones"""
     text += " ({})*: ".format(", ".join(opciones))
@@ -39,6 +43,7 @@ def input_option(text, opciones):
         val = input(text)
     return val.lower()
 
+
 def input_entero(text):
     while True:
         valor = input("{}: ".format(text))
@@ -46,8 +51,9 @@ def input_entero(text):
             valor = int(valor)
             return valor
         except ValueError:
-            if(valor is ""):
-                return  None
+            if (valor is ""):
+                return None
+
 
 def input_entero_r(text):
     """ Solicita un valor entero y lo devuelve. (es requerido)
@@ -60,6 +66,7 @@ def input_entero_r(text):
         except ValueError:
             pass
 
+
 def input_alpha(text):
     """ Solicita una cadena"""
     while True:
@@ -68,6 +75,7 @@ def input_alpha(text):
             return valor
         except ValueError:
             pass
+
 
 def input_alpha_r(text):
     """ Solicita una cadena (requerido)"""
@@ -81,15 +89,17 @@ def input_alpha_r(text):
         except ValueError:
             pass
 
+
 def abrir(path, modo):
     """Recibe una direccion y modo de apertura de archivo/fichero
     y retorna el archivo"""
     try:
-        f = open(path,modo)
+        f = open(path, modo)
     except:
-        print("Verifique, no se pudo encontrar el archivo "+path)
+        print("Verifique, no se pudo encontrar el archivo " + path)
     else:
         return f
+
 
 def cargar(f):
     """Recibe un fichero con un objeto serializado, retorna el objeto"""
@@ -100,17 +110,23 @@ def cargar(f):
     else:
         return obj
 
+
 def encontrar_valor(lista, identificador, text):
     for val in lista:
         existe = getattr(val, identificador)
         if str(existe) == text:
             return val
 
-    return print("Cliente no encontrado")
+    return print("No encontrado")
+
 
 def guardar_datos():
     f1 = abrir(path + "/empleados", "wb")
     dump(bd.empleados, f1)
+    f1.close()
+
+    f1 = abrir(path + "/ctacteBancarias", "rb")
+    dump(bd.ctacteBancarias, f1)
     f1.close()
 
     f1 = abrir(path + "/clientes", "wb")
@@ -121,18 +137,20 @@ def guardar_datos():
     dump(bd.transacciones, f1)
     f1.close()
 
-def cargar_datos():
-    #f1 = abrir(path + "/empleados", "rb")
-    #dump(bd.empleados, f1)
-    #f1.close()
 
+def cargar_datos():
     f1 = abrir(path + "/clientes", "rb")
     bd.clientes = cargar(f1)
     f1.close()
 
-    #f1 = abrir(path + "/transacciones", "rb")
-    #dump(bd.transacciones, f1)
-    #f1.close()
+    f1 = abrir(path + "/ctacteBancarias", "rb")
+    bd.ctacteBancarias = cargar(f1)
+    f1.close()
+
+    # f1 = abrir(path + "/transacciones", "rb")
+    # dump(bd.transacciones, f1)
+    # f1.close()
+
 
 def print_objeto(objeto):
     objeto = vars(objeto)
