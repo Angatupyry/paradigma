@@ -12,7 +12,7 @@ class CuentaBancaria:
 
     def obtener_saldo(self):
         saldo = 0
-        if self.transacciones:
+        if self.transacciones is None:
             for transaccion in self.transacciones:
                 saldo += transaccion.monto
         return saldo

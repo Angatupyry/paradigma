@@ -1,6 +1,7 @@
 import Datos.Bd as bd
 from Clases.Persona import Cliente
 from Clases.CuentaBancaria import CuentaBancaria
+from Clases.Transaccion import Deposito
 from Framework.Util import *
 
 
@@ -12,6 +13,9 @@ class AppUtil:
     def add_cliente(self):
         cls_()
         bd.clientes.append(Cliente(**Cliente.prompt_init()))
+        print("-------CREAR CUENTA BANCARIA-------")
+        cuenta = CuentaBancaria(**CuentaBancaria.prompt_init())
+
 
     def inactivar_cliente(self):
         dato = encontrar_valor(bd.clientes, "cedula", input_alpha_r("Ingrese numero de cedula "))
@@ -26,6 +30,16 @@ class AppUtil:
         """Agregar una cuenta bancaria para un cliente."""
         cls_()
         bd.ctacteBancarias.append(CuentaBancaria.prompt_init())
+
+    def obtener_saldo(self):
+        cls_()
+        transaccion = encontrar_valor(bd.transacciones, "nro_cuenta", input_alpha_r("Ingrese número de cuenta"))
+        a = CuentaBancaria(800, 2, transaccion)
+        a.obtener_saldo()
+
+    # Depósito
+    def new_deposito(self):
+        bd.transacciones.append(Deposito.prompt_init())
 
     # Funciones
     def inactivar(self, lista, dato):
@@ -89,10 +103,16 @@ class AppUtil:
             dic[int(opcion)]["f"](self)
 
     def menu_clientes(self):
-        self.menu_list("CLIENTES", self.o_clientes)
+        self.menu_list("CLIENTES", self.array_clientes)
 
     def menu_cuentas(self):
         self.menu_list("CUENTAS_BANCARIAS", self.o_cuentas)
+
+    def menu_transacciones(self):
+        self.menu_list("TRANSACCIONES", self.o_transacciones)
+
+    def menu_deposito(self):
+        self.menu_list("DEPOSITO", self.o_deposito)
 
     # arrays de menús
     array_clientes = {}
@@ -104,7 +124,17 @@ class AppUtil:
 
     o_cuentas = {}
     o_cuentas[1] = {"t": "Agregar Cuenta", "f": add_cuenta_bancaria}
+    o_cuentas[2] = {"t": "Consultar Saldo", "f": obtener_saldo}
+    o_cuentas[3] = {"t": "Salir", "f": salir}
 
     o_principal = {}
     o_principal[1] = {"t": "Menú de Clientes", "f": menu_clientes}
     o_principal[2] = {"t": "Menú de Cuentas Bancarias", "f": menu_cuentas}
+    o_principal[3] = {"t": "Menú de Transacciones", "f": menu_transacciones}
+
+    o_transacciones = {}
+    o_transacciones[1] = {"t": "Depósito", "f": menu_deposito}
+
+    o_deposito = {}
+    o_deposito[1] = {"t": "Nuevo Depósito", "f": new_deposito}
+    o_deposito[2] = {"t": "Salir", "f": salir}
