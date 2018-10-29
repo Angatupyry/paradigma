@@ -4,10 +4,11 @@
     <list default="true" id="aafddb68-d64a-4207-91d6-ad0d0ded3406" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Clases/CuentaBancaria.py" beforeDir="false" afterPath="$PROJECT_DIR$/Clases/CuentaBancaria.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Clases/Transaccion.py" beforeDir="false" afterPath="$PROJECT_DIR$/Clases/Transaccion.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Datos/clientes" beforeDir="false" afterPath="$PROJECT_DIR$/Datos/clientes" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Datos/ctacteBancarias" beforeDir="false" afterPath="$PROJECT_DIR$/Datos/ctacteBancarias" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Datos/transacciones" beforeDir="false" afterPath="$PROJECT_DIR$/Datos/transacciones" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Framework/AppUtil.py" beforeDir="false" afterPath="$PROJECT_DIR$/Framework/AppUtil.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Framework/Util.py" beforeDir="false" afterPath="$PROJECT_DIR$/Framework/Util.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/InicializarDatos/CargaDatos.py" beforeDir="false" afterPath="$PROJECT_DIR$/InicializarDatos/CargaDatos.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -39,25 +40,25 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="dummy" value="18" />
-          <entry key="py" value="8986" />
+          <entry key="py" value="9603" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="PLAIN_TEXT" value="18" />
-          <entry key="Python" value="8986" />
+          <entry key="Python" value="9603" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="Datosclientes" value="1" />
-          <entry key="py" value="46" />
+          <entry key="py" value="53" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="PLAIN_TEXT" value="1" />
-          <entry key="Python" value="46" />
+          <entry key="Python" value="53" />
         </counts>
       </usages-collector>
     </session>
@@ -67,8 +68,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Clases/Persona.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1224">
-              <caret line="75" column="8" selection-start-line="75" selection-start-column="8" selection-end-line="75" selection-end-column="8" />
+            <state relative-caret-position="341">
+              <caret line="85" column="26" lean-forward="true" selection-start-line="85" selection-start-column="26" selection-end-line="85" selection-end-column="26" />
               <folding>
                 <element signature="e#0#23#0" expanded="true" />
               </folding>
@@ -79,11 +80,11 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Clases/CuentaBancaria.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="21" column="22" lean-forward="true" selection-start-line="21" selection-start-column="22" selection-end-line="21" selection-end-column="22" />
+            <state relative-caret-position="209">
+              <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="21" />
               <folding>
                 <element signature="e#0#22#0" expanded="true" />
-                <marker date="1540826200920" expanded="true" signature="121:126" ph="..." />
+                <marker date="1540832603098" expanded="true" signature="144:149" ph="..." />
               </folding>
             </state>
           </provider>
@@ -92,15 +93,27 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Framework/AppUtil.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="178">
-              <caret line="139" column="16" selection-start-line="139" selection-start-column="16" selection-end-line="139" selection-end-column="16" />
+            <state relative-caret-position="113">
+              <caret line="28" selection-start-line="28" selection-end-line="28" />
               <folding>
                 <element signature="e#0#21#0" expanded="true" />
-                <marker date="1540826534599" expanded="true" signature="798:1274" ph="..." />
-                <marker date="1540826534599" expanded="true" signature="966:1174" ph="..." />
-                <marker date="1540826534599" expanded="true" signature="1184:1189" ph="..." />
-                <marker date="1540826534599" expanded="true" signature="1269:1274" ph="..." />
-                <marker date="1540826534599" expanded="true" signature="3689:3839" ph="..." />
+                <marker date="1540832783510" expanded="true" signature="797:1606" ph="..." />
+                <marker date="1540832783510" expanded="true" signature="1223:1506" ph="..." />
+                <marker date="1540832783510" expanded="true" signature="1516:1521" ph="..." />
+                <marker date="1540832783510" expanded="true" signature="1601:1606" ph="..." />
+                <marker date="1540832783510" expanded="true" signature="4021:4171" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/App.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="102">
+              <caret line="6" selection-start-line="6" selection-end-line="6" />
+              <folding>
+                <element signature="e#0#37#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -109,8 +122,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Clases/Transaccion.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="29" column="8" selection-start-line="29" selection-start-column="8" selection-end-line="29" selection-end-column="8" />
+            <state relative-caret-position="374">
+              <caret line="22" column="8" selection-start-line="22" selection-start-column="8" selection-end-line="22" selection-end-column="8" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
                 <marker date="1540730142165" expanded="true" signature="680:685" ph="..." />
@@ -120,22 +133,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/App.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
-              <folding>
-                <element signature="e#0#37#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/InicializarDatos/CargaDatos.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="22" column="13" lean-forward="true" selection-start-line="22" selection-start-column="13" selection-end-line="22" selection-end-column="13" />
+            <state relative-caret-position="221">
+              <caret line="28" column="13" lean-forward="true" selection-start-line="28" selection-start-column="13" selection-end-line="28" selection-end-column="13" />
               <folding>
                 <element signature="e#0#23#0" expanded="true" />
               </folding>
@@ -146,21 +147,39 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Framework/Util.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="312">
-              <caret line="113" column="4" selection-start-line="113" selection-start-column="4" selection-end-line="113" selection-end-column="4" />
+            <state relative-caret-position="-50">
+              <caret line="146" column="4" selection-start-line="146" selection-start-column="4" selection-end-line="146" selection-end-column="4" />
               <folding>
                 <element signature="e#0#9#0" expanded="true" />
-                <marker date="1540680709230" expanded="true" signature="3359:3550" ph="..." />
+                <marker date="1540830793547" expanded="true" signature="3537:3728" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Datos/Bd.py">
+        <entry file="file:///usr/lib/python3.5/urllib/parse.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
-              <caret line="3" selection-start-line="3" selection-end-line="3" />
+            <state relative-caret-position="103">
+              <caret line="724" selection-start-line="724" selection-end-line="724" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file:///usr/lib/python3.5/codecs.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="171">
+              <caret line="323" selection-start-line="323" selection-end-line="323" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$USER_HOME$/.PyCharmCE2018.2/system/python_stubs/-1247971764/builtins.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="119">
+              <caret line="167" column="4" selection-start-line="167" selection-start-column="4" selection-end-line="167" selection-end-column="4" />
             </state>
           </provider>
         </entry>
@@ -179,6 +198,7 @@
       <find>cliente no n</find>
       <find>Volver</find>
       <find>menu_transacciones</find>
+      <find>obtener_saldo</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -199,10 +219,10 @@
         <option value="$PROJECT_DIR$/App.py" />
         <option value="$PROJECT_DIR$/Datos/Bd.py" />
         <option value="$PROJECT_DIR$/Clases/Contacto.py" />
-        <option value="$PROJECT_DIR$/Framework/Util.py" />
-        <option value="$PROJECT_DIR$/InicializarDatos/CargaDatos.py" />
         <option value="$PROJECT_DIR$/Clases/Transaccion.py" />
         <option value="$PROJECT_DIR$/Clases/Persona.py" />
+        <option value="$PROJECT_DIR$/Framework/Util.py" />
+        <option value="$PROJECT_DIR$/InicializarDatos/CargaDatos.py" />
         <option value="$PROJECT_DIR$/Clases/CuentaBancaria.py" />
         <option value="$PROJECT_DIR$/Framework/AppUtil.py" />
       </list>
@@ -247,11 +267,6 @@
               <item name="paradigma" type="b2602c69:ProjectViewProjectNode" />
               <item name="paradigma" type="462c0819:PsiDirectoryNode" />
               <item name="Clases" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="paradigma" type="b2602c69:ProjectViewProjectNode" />
-              <item name="paradigma" type="462c0819:PsiDirectoryNode" />
-              <item name="Datos" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="paradigma" type="b2602c69:ProjectViewProjectNode" />
@@ -306,6 +321,27 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/App.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="AppUtil" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="paradigma" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Framework" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Framework/AppUtil.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -397,10 +433,12 @@
       <item itemvalue="Python.Persona" />
       <item itemvalue="Python.Util" />
       <item itemvalue="Python.App" />
+      <item itemvalue="Python.AppUtil" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Python.App" />
+        <item itemvalue="Python.AppUtil" />
         <item itemvalue="Python.Util" />
         <item itemvalue="Python.Persona" />
       </list>
@@ -430,14 +468,15 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1366" height="725" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2762472" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.34833333" />
-      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.39833334" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.34833333" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.39833334" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32833335" />
@@ -459,14 +498,9 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/Framework/AppUtil.py</url>
-          <line>33</line>
-          <option name="timeStamp" value="8" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/Clases/CuentaBancaria.py</url>
           <line>12</line>
-          <option name="timeStamp" value="9" />
+          <option name="timeStamp" value="16" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
@@ -477,6 +511,25 @@
         </breakpoint>
       </default-breakpoints>
     </breakpoint-manager>
+  </component>
+  <component name="debuggerHistoryManager">
+    <expressions id="evaluateExpression">
+      <expression>
+        <expression-string>text</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>str(existe) == text</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>str(existe)</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+    </expressions>
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/Clases/Deposito.py" />
@@ -504,20 +557,6 @@
     <entry file="file://$PROJECT_DIR$/App/AppUtil.py" />
     <entry file="file:///usr/lib/python3/dist-packages/apport_python_hook.py" />
     <entry file="file://$PROJECT_DIR$/Clases/Reversible.py" />
-    <entry file="file:///usr/lib/python3.5/codecs.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="310" selection-start-line="310" selection-end-line="310" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/.PyCharmCE2018.2/system/python_stubs/-1247971764/builtins.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="800" column="8" selection-start-line="800" selection-start-column="8" selection-end-line="800" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/.PyCharmCE2018.2/system/python_stubs/-1247971764/_pickle.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-338">
@@ -532,58 +571,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Clases/Persona.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1224">
-          <caret line="75" column="8" selection-start-line="75" selection-start-column="8" selection-end-line="75" selection-end-column="8" />
-          <folding>
-            <element signature="e#0#23#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/App.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
-          <folding>
-            <element signature="e#0#37#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/InicializarDatos/CargaDatos.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="22" column="13" lean-forward="true" selection-start-line="22" selection-start-column="13" selection-end-line="22" selection-end-column="13" />
-          <folding>
-            <element signature="e#0#23#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Datos/Bd.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" selection-start-line="3" selection-end-line="3" />
+        <state relative-caret-position="34">
+          <caret line="2" selection-start-line="2" selection-end-line="2" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Framework/Util.py">
+    <entry file="file://$USER_HOME$/.PyCharmCE2018.2/system/python_stubs/-1247971764/builtins.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="312">
-          <caret line="113" column="4" selection-start-line="113" selection-start-column="4" selection-end-line="113" selection-end-column="4" />
+        <state relative-caret-position="119">
+          <caret line="167" column="4" selection-start-line="167" selection-start-column="4" selection-end-line="167" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Clases/Persona.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="341">
+          <caret line="85" column="26" lean-forward="true" selection-start-line="85" selection-start-column="26" selection-end-line="85" selection-end-column="26" />
           <folding>
-            <element signature="e#0#9#0" expanded="true" />
-            <marker date="1540680709230" expanded="true" signature="3359:3550" ph="..." />
+            <element signature="e#0#23#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Clases/Transaccion.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="29" column="8" selection-start-line="29" selection-start-column="8" selection-end-line="29" selection-end-column="8" />
+        <state relative-caret-position="374">
+          <caret line="22" column="8" selection-start-line="22" selection-start-column="8" selection-end-line="22" selection-end-column="8" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
             <marker date="1540730142165" expanded="true" signature="680:685" ph="..." />
@@ -591,28 +606,73 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/App.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" selection-start-line="6" selection-end-line="6" />
+          <folding>
+            <element signature="e#0#37#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/lib/python3.5/codecs.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="323" selection-start-line="323" selection-end-line="323" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/lib/python3.5/urllib/parse.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="103">
+          <caret line="724" selection-start-line="724" selection-end-line="724" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Framework/Util.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-50">
+          <caret line="146" column="4" selection-start-line="146" selection-start-column="4" selection-end-line="146" selection-end-column="4" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+            <marker date="1540830793547" expanded="true" signature="3537:3728" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/InicializarDatos/CargaDatos.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="28" column="13" lean-forward="true" selection-start-line="28" selection-start-column="13" selection-end-line="28" selection-end-column="13" />
+          <folding>
+            <element signature="e#0#23#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Clases/CuentaBancaria.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="21" column="22" lean-forward="true" selection-start-line="21" selection-start-column="22" selection-end-line="21" selection-end-column="22" />
+        <state relative-caret-position="209">
+          <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="21" />
           <folding>
             <element signature="e#0#22#0" expanded="true" />
-            <marker date="1540826200920" expanded="true" signature="121:126" ph="..." />
+            <marker date="1540832603098" expanded="true" signature="144:149" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Framework/AppUtil.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="178">
-          <caret line="139" column="16" selection-start-line="139" selection-start-column="16" selection-end-line="139" selection-end-column="16" />
+        <state relative-caret-position="113">
+          <caret line="28" selection-start-line="28" selection-end-line="28" />
           <folding>
             <element signature="e#0#21#0" expanded="true" />
-            <marker date="1540826534599" expanded="true" signature="798:1274" ph="..." />
-            <marker date="1540826534599" expanded="true" signature="966:1174" ph="..." />
-            <marker date="1540826534599" expanded="true" signature="1184:1189" ph="..." />
-            <marker date="1540826534599" expanded="true" signature="1269:1274" ph="..." />
-            <marker date="1540826534599" expanded="true" signature="3689:3839" ph="..." />
+            <marker date="1540832783510" expanded="true" signature="797:1606" ph="..." />
+            <marker date="1540832783510" expanded="true" signature="1223:1506" ph="..." />
+            <marker date="1540832783510" expanded="true" signature="1516:1521" ph="..." />
+            <marker date="1540832783510" expanded="true" signature="1601:1606" ph="..." />
+            <marker date="1540832783510" expanded="true" signature="4021:4171" ph="..." />
           </folding>
         </state>
       </provider>

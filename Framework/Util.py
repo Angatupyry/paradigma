@@ -117,7 +117,13 @@ def encontrar_valor(lista, identificador, text):
         if str(existe) == text:
             return val
 
-    return print("No encontrado")
+def encontrar_valor_array(lista, identificador, text):
+    array = []
+    for val in lista:
+        existe = getattr(val, identificador)
+        if existe == text:
+             array.append(val)
+    return array
 
 
 def guardar_datos():

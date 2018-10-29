@@ -1,6 +1,6 @@
 import Datos.Bd as bd1
 
-from Framework.Util import input_entero_r, encontrar_valor, input_alpha_r
+from Framework.Util import input_entero_r, encontrar_valor, input_alpha_r, encontrar_valor_array
 
 
 class CuentaBancaria:
@@ -11,16 +11,11 @@ class CuentaBancaria:
         self.transacciones.append(transacciones)
 
     def obtener_saldo(self):
-        saldo = 0
-        if self.transacciones is None:
-            for transaccion in self.transacciones:
+        transacciones = encontrar_valor_array(bd1.transacciones, "cuenta_cliente", self.numero_cuenta)
+        if transacciones.__len__() > 0:
+            saldo = 0
+            for transaccion in transacciones:
                 saldo += transaccion.monto
-        return saldo
-
-    def prompt_init():
-        """Hola"""
-        return dict(numero_cuenta=input_entero_r("Ingrese nro. de Cuenta: "),
-                    cedula_cliente=encontrar_valor(bd1.clientes, "cedula",
-                                                   input_alpha_r("Ingrese Cédula del cliente")))
-
-    prompt_init = staticmethod(prompt_init)
+            return saldo
+        else:
+            return "No existe movimiento"

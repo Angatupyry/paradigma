@@ -14,7 +14,7 @@ def inicializar_datos():
     # Clientes
     a = Cliente(3828622, "Ariel", "Curtido", "Asunción")
     bd.clientes.append(a)
-    bd.clientes.append(Cliente(2, "César", "Rolon", "Capiatá"))
+    bd.clientes.append(Cliente(2, "César", "Rolón", "Capiatá"))
     bd.clientes.append(Cliente(3, "Tamara", "Ocampos", "Fdo. de la Mora", None, "111111111-1"))
     bd.clientes.append(Cliente(4, "Arnaldo", "Perez", "Asunción", None, "222222222-2"))
     bd.clientes.append(Cliente(5, "Adrian", "Recalde", "Villa Elisa"))
@@ -23,13 +23,14 @@ def inicializar_datos():
     f.close()
 
     # CtacteBancaroas
-    bd.clientes.append(CuentaBancaria(800, 2))
+    bd.ctacteBancarias.append(CuentaBancaria(800, 2))
     f = abrir(path + "/ctacteBancarias", "wb")
-    dump(bd.clientes, f)
+    dump(bd.ctacteBancarias, f)
     f.close()
 
     # Transacciones
-    bd.clientes.append(Deposito(10, 34, 800, 45000))
+    bd.transacciones.append(Deposito(10, 34, 800, 45000))
+    bd.transacciones.append(Deposito(10, 34, 800, 45000))
     f = abrir(path + "/transacciones", "wb")
     dump(bd.transacciones, f)
     f.close()

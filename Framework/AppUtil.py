@@ -16,7 +16,6 @@ class AppUtil:
         print("-------CREAR CUENTA BANCARIA-------")
         cuenta = CuentaBancaria(**CuentaBancaria.prompt_init())
 
-
     def inactivar_cliente(self):
         dato = encontrar_valor(bd.clientes, "cedula", input_alpha_r("Ingrese numero de cedula "))
         if dato:
@@ -29,13 +28,20 @@ class AppUtil:
     def add_cuenta_bancaria(self):
         """Agregar una cuenta bancaria para un cliente."""
         cls_()
-        bd.ctacteBancarias.append(CuentaBancaria.prompt_init())
+        cliente = encontrar_valor(bd.clientes, "cedula", input_alpha_r("Cédula cliente:"))
+        if cliente is not None:
+            ctacte = CuentaBancaria(input_entero_r("Ingrese número de cuenta"), cliente.cedula)
+            bd.ctacteBancarias.append(ctacte)
+        else:
+            print("Cliente no encontrado")
 
     def obtener_saldo(self):
         cls_()
-        transaccion = encontrar_valor(bd.transacciones, "nro_cuenta", input_alpha_r("Ingrese número de cuenta"))
-        a = CuentaBancaria(800, 2, transaccion)
-        a.obtener_saldo()
+        cuentabancaria = encontrar_valor(bd.ctacteBancarias, "numero_cuenta", input_alpha_r("Ingrese número de cuenta"))
+        if cuentabancaria is not None:
+            print(cuentabancaria.obtener_saldo())
+        else:
+            print("No existe cuenta")
 
     # Depósito
     def new_deposito(self):
