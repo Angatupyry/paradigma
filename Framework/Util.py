@@ -114,7 +114,7 @@ def cargar(f):
 def encontrar_valor(lista, identificador, text):
     for val in lista:
         existe = getattr(val, identificador)
-        if str(existe) == text:
+        if str(existe) == str(text):
             return val
 
 def encontrar_valor_array(lista, identificador, text):
@@ -153,9 +153,9 @@ def cargar_datos():
     bd.ctacteBancarias = cargar(f1)
     f1.close()
 
-    # f1 = abrir(path + "/transacciones", "rb")
-    # dump(bd.transacciones, f1)
-    # f1.close()
+    f1 = abrir(path + "/transacciones", "rb")
+    bd.transacciones = cargar(f1)
+    f1.close()
 
 
 def print_objeto(objeto):

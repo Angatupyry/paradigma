@@ -1,7 +1,7 @@
 import Datos.Bd as bd
 from Clases.Persona import Cliente
 from Clases.CuentaBancaria import CuentaBancaria
-from Clases.Transaccion import Deposito
+from Clases.Transaccion import Deposito, Reversible
 from Framework.Util import *
 
 
@@ -45,7 +45,24 @@ class AppUtil:
 
     # Depósito
     def new_deposito(self):
-        bd.transacciones.append(Deposito.prompt_init())
+        """Agregar una cuenta bancaria para un cliente."""
+        cls_()
+        ctacte = encontrar_valor(bd.ctacteBancarias, "numero_cuenta", input_alpha_r("Nro Cuenta:"))
+        if ctacte is not None:
+            deposito = Deposito.prompt_init()
+            deposito.update({"cuenta_cliente": ctacte.numero_cuenta})
+            a = Deposito(**deposito)
+            bd.transacciones.append(a)
+        else:
+            print("asdf")
+
+    #Revertir Depósito
+    def revertir(self):
+        deposito = encontrar_valor(bd.transacciones, "nro_transaccion", input_entero_r("Número de transacción:"))
+        if deposito is not None:
+            deposito.revertir()
+        else:
+            print("No se encontró ningún depósito con ese número de transacción")
 
     # Funciones
     def inactivar(self, lista, dato):
@@ -131,7 +148,8 @@ class AppUtil:
     o_cuentas = {}
     o_cuentas[1] = {"t": "Agregar Cuenta", "f": add_cuenta_bancaria}
     o_cuentas[2] = {"t": "Consultar Saldo", "f": obtener_saldo}
-    o_cuentas[3] = {"t": "Salir", "f": salir}
+    o_cuentas[3] = {"t": "Volver", "f": menu}
+    o_cuentas[4] = {"t": "Salir", "f": salir}
 
     o_principal = {}
     o_principal[1] = {"t": "Menú de Clientes", "f": menu_clientes}
@@ -143,4 +161,6 @@ class AppUtil:
 
     o_deposito = {}
     o_deposito[1] = {"t": "Nuevo Depósito", "f": new_deposito}
-    o_deposito[2] = {"t": "Salir", "f": salir}
+    o_deposito[2] = {"t": "Revertir Depósito", "f": revertir}
+    o_deposito[3] = {"t": "Volver", "f": menu}
+    o_deposito[4] = {"t": "Salir", "f": salir}

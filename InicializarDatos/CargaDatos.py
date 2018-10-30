@@ -29,8 +29,8 @@ def inicializar_datos():
     f.close()
 
     # Transacciones
-    bd.transacciones.append(Deposito(10, 34, 800, 45000))
-    bd.transacciones.append(Deposito(10, 34, 800, 45000))
+    bd.transacciones.append(Deposito(10, 34, 45000, 800))
+    bd.transacciones.append(Deposito(9, 34, 45000,800 ))
     f = abrir(path + "/transacciones", "wb")
     dump(bd.transacciones, f)
     f.close()
