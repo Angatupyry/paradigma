@@ -76,13 +76,10 @@ class Cliente(Persona):
     def prompt_init():
         """Se crea un diccionario con los indices y valores necesarios para
         instanciar al objeto"""
-        #TODO contacto no se puede instanciar, crear métodos   de contactos
+        #TODO Agregar contactos
         parent_init = Persona.prompt_init()
-        datos = {"hhh","fff","asfd"} #Contacto.prompt_init()
-        #contacto = Contacto(**datos)
         ruc = input_alpha("Ingrese Ruc")
-        parent_init.update({"contacto": datos,
-                            "ruc": ruc})
+        parent_init.update({"ruc": ruc})
         return parent_init
 
     prompt_init = staticmethod(prompt_init)

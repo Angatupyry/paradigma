@@ -15,6 +15,7 @@ class Transaccion(metaclass=ABCMeta):
         self.monto = monto
         self.cuenta_cliente = cuenta_cliente
 
+    @abstractmethod
     def realizarTransaccion(self, monto, cuenta_bancaria):
         pass
 
@@ -53,10 +54,8 @@ class Reversible(metaclass=ABCMeta):
 
     pass
 
-# TODO MÉTODOS LISTAR PARA TODAS LAS CLASES.
 # TODO TRANSACCIONES, AGREGAR TIPOS QUE FALTAN.
 # TODO AGREGAR UN MENÚ PARA CONTACTOS, DESDE MENÚ CLIENTES.
 # TODO IMPRIMIR OBJETOS.
-# TODO AGREGAR VARIABLES CONSTANTES PARA LA CONTABILIDAD
 # TODO VOLVER EN TODOS LOS MENÚS.
 # TODO MENÚ EMPLEADO, SET SALARIO.

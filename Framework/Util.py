@@ -157,7 +157,6 @@ def cargar_datos():
     bd.transacciones = cargar(f1)
     f1.close()
 
-
 def print_objeto(objeto):
     objeto = vars(objeto)
     for dato in objeto:

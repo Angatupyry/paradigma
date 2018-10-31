@@ -1,5 +1,5 @@
 import Datos.Bd as bd
-from Clases.Persona import Cliente
+from Clases.Persona import Cliente, Telefono
 from Clases.CuentaBancaria import CuentaBancaria
 from Clases.Transaccion import Deposito, Reversible
 from Framework.Util import *
@@ -7,14 +7,13 @@ from Framework.Util import *
 
 class AppUtil:
     def __init__(self):
+        # Abre los archivos binarios pickle
         cargar_datos()
 
     # Cliente
     def add_cliente(self):
         cls_()
         bd.clientes.append(Cliente(**Cliente.prompt_init()))
-        print("-------CREAR CUENTA BANCARIA-------")
-        cuenta = CuentaBancaria(**CuentaBancaria.prompt_init())
 
     def inactivar_cliente(self):
         dato = encontrar_valor(bd.clientes, "cedula", input_alpha_r("Ingrese numero de cedula "))
@@ -27,6 +26,7 @@ class AppUtil:
     # Cuenta Bancaria
     def add_cuenta_bancaria(self):
         """Agregar una cuenta bancaria para un cliente."""
+        #Debe existir un cliente para agregar una cuenta bancaria.
         cls_()
         cliente = encontrar_valor(bd.clientes, "cedula", input_alpha_r("Cédula cliente:"))
         if cliente is not None:
@@ -45,36 +45,40 @@ class AppUtil:
 
     # Depósito
     def new_deposito(self):
-        """Agregar una cuenta bancaria para un cliente."""
+        """Realizar un depósito a una cuenta bancaria"""
         cls_()
         ctacte = encontrar_valor(bd.ctacteBancarias, "numero_cuenta", input_alpha_r("Nro Cuenta:"))
         if ctacte is not None:
             deposito = Deposito.prompt_init()
             deposito.update({"cuenta_cliente": ctacte.numero_cuenta})
-            a = Deposito(**deposito)
-            bd.transacciones.append(a)
+            add_deposito = Deposito(**deposito)
+            bd.transacciones.append(add_deposito)
         else:
-            print("asdf")
+            print("No existe una cuenta bancaria con ese número de cuenta")
 
-    #Revertir Depósito
     def revertir(self):
         deposito = encontrar_valor(bd.transacciones, "nro_transaccion", input_entero_r("Número de transacción:"))
         if deposito is not None:
             deposito.revertir()
+            print("Transacción: " + str(deposito.nro_transaccion) + " revertido")
         else:
             print("No se encontró ningún depósito con ese número de transacción")
 
-    # Funciones
+    # Transacciones
+    def listar_transacciones(self):
+        self.listar_datos(bd.transacciones)
+
+    # Funciones Úitles
     def inactivar(self, lista, dato):
         if lista:
-            resp = input_option("Desea eliminar el dato?", ("si", "no"))
+            resp = input_option("¿Desea eliminar el dato?", ("si", "no"))
             if resp == "si":
                 lista.remove(dato)
-                print("Cliente Inactivado")
+                print("Dato eliminado")
             else:
                 print("Petición Cancelada")
         else:
-            print("No se enonctró")
+            print("Dato no encontrado")
 
     def listar_datos(self, lista, pausar=True):
         """Permiste listar datos de distintas clases, el valor booleano
@@ -84,7 +88,6 @@ class AppUtil:
             cont = 1
             for val in lista:
                 print(("-----------------=={}==-----------------".format(cont)))
-                # val.mostrar_datos()
                 print_objeto(val)
                 print()
                 if (cont % 5) is 0:
@@ -92,17 +95,17 @@ class AppUtil:
                         input("Presione enter para continuar...")
                 cont += 1
             if pausar:
-                input("Presione enter para volver al menu...")
+                input("Presione enter para volver al menú...")
         else:
             input("\nSin datos. \nPresione enter para continuar...")
 
-    # Menú
+    # Menú Principal
     def menu(self):
         """Menú principal"""
         while True:
             cls()
             print("-----------------------------------------------------------")
-            print("--------------------MENU--PRINCIPAL------------------------")
+            print("--------------------MENÚ--PRINCIPAL------------------------")
             print()
             for key in list(self.o_principal.keys()):
                 print(("{} - {}".format(key, self.o_principal[key]["t"])))
@@ -114,7 +117,7 @@ class AppUtil:
         exit()
 
     def menu_list(self, text, dic):
-        """Presenta el menu con las o_principal"""
+        """Presenta el menú con las opciones principales"""
         while True:
             cls()
             print(("\n------------------{}--------------------------\n".
@@ -126,7 +129,7 @@ class AppUtil:
             dic[int(opcion)]["f"](self)
 
     def menu_clientes(self):
-        self.menu_list("CLIENTES", self.array_clientes)
+        self.menu_list("CLIENTES", self.o_clientes)
 
     def menu_cuentas(self):
         self.menu_list("CUENTAS_BANCARIAS", self.o_cuentas)
@@ -137,13 +140,18 @@ class AppUtil:
     def menu_deposito(self):
         self.menu_list("DEPOSITO", self.o_deposito)
 
-    # arrays de menús
-    array_clientes = {}
-    array_clientes[1] = {"t": "Agregar cliente", "f": add_cliente}
-    array_clientes[2] = {"t": "Inactivar cliente", "f": inactivar_cliente}
-    array_clientes[3] = {"t": "Listar clientes", "f": listar_clientes}
-    array_clientes[4] = {"t": "Volver", "f": menu}
-    array_clientes[5] = {"t": "Salir", "f": salir}
+    o_principal = {}
+    o_principal[1] = {"t": "Menú de Clientes", "f": menu_clientes}
+    o_principal[2] = {"t": "Menú de Cuentas Bancarias", "f": menu_cuentas}
+    o_principal[3] = {"t": "Menú de Transacciones", "f": menu_transacciones}
+
+    o_clientes = {}
+    o_clientes[1] = {"t": "Agregar cliente", "f": add_cliente}
+    o_clientes[2] = {"t": "Inactivar cliente", "f": inactivar_cliente}
+    o_clientes[3] = {"t": "Listar clientes", "f": listar_clientes}
+    o_clientes[4] = {"t": "Contactos", "f": listar_clientes}
+    o_clientes[5] = {"t": "Volver", "f": menu}
+    o_clientes[6] = {"t": "Salir", "f": salir}
 
     o_cuentas = {}
     o_cuentas[1] = {"t": "Agregar Cuenta", "f": add_cuenta_bancaria}
@@ -151,13 +159,10 @@ class AppUtil:
     o_cuentas[3] = {"t": "Volver", "f": menu}
     o_cuentas[4] = {"t": "Salir", "f": salir}
 
-    o_principal = {}
-    o_principal[1] = {"t": "Menú de Clientes", "f": menu_clientes}
-    o_principal[2] = {"t": "Menú de Cuentas Bancarias", "f": menu_cuentas}
-    o_principal[3] = {"t": "Menú de Transacciones", "f": menu_transacciones}
-
     o_transacciones = {}
     o_transacciones[1] = {"t": "Depósito", "f": menu_deposito}
+    o_transacciones[2] = {"t": "Listar transacciones", "f": listar_transacciones}
+    o_transacciones[3] = {"t": "Volver", "f": menu}
 
     o_deposito = {}
     o_deposito[1] = {"t": "Nuevo Depósito", "f": new_deposito}
