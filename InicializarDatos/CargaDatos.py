@@ -12,11 +12,17 @@ def inicializar_datos():
     #path = "/home/cba/Escritorio/paradigma/Datos"  # CBA
 
     # Clientes
-    a = Cliente(3828622, "Ariel", "Curtido", "Asunción")
-    bd.clientes.append(a)
+    bd.clientes.append(Cliente(3828622, "Ariel", "Curtido", "Asunción"))
     bd.clientes.append(Cliente(2, "César", "Rolón", "Capiatá"))
     f = abrir(path + "/clientes", "wb")
     dump(bd.clientes, f)
+    f.close()
+
+    # Empleado
+    bd.empleados.append(Empleado(1, "Juan", "Pérez", "Asunción",None,2000000))
+    bd.empleados.append(Empleado(2, "Rodrigo", "Aquino", "Capiatá",None,4000000))
+    f = abrir(path + "/empleados", "wb")
+    dump(bd.empleados, f)
     f.close()
 
     # CtacteBancaroas

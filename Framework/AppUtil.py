@@ -1,5 +1,5 @@
 import Datos.Bd as bd
-from Clases.Persona import Cliente, Telefono
+from Clases.Persona import Cliente, Telefono, Empleado
 from Clases.CuentaBancaria import CuentaBancaria
 from Clases.Transaccion import Deposito, Reversible
 from Framework.Util import *
@@ -23,10 +23,31 @@ class AppUtil:
     def listar_clientes(self):
         self.listar_datos(bd.clientes)
 
+    # Empleado
+    def add_empleado(self):
+        cls_()
+        bd.empleados.append(Empleado(**Empleado.prompt_init()))
+
+    def inactivar_empleado(self):
+        dato = encontrar_valor(bd.empleados, "cedula", input_alpha_r("Ingrese número de cédula "))
+        if dato:
+            self.inactivar(bd.empleados, dato)
+
+    def listar_empleado(self):
+        self.listar_datos(bd.empleados)
+
+    def actualizar_salario(self):
+        e = encontrar_valor(bd.empleados, "cedula", input_alpha_r("Ingrese número de cédula: "))
+        if e:
+            salario_nuevo = input_entero_r("Ingrese nuevo salario")
+            e.actualizarSalario(salario_nuevo)
+        else:
+            print("No se encuentra empleado")
+
     # Cuenta Bancaria
     def add_cuenta_bancaria(self):
         """Agregar una cuenta bancaria para un cliente."""
-        #Debe existir un cliente para agregar una cuenta bancaria.
+        # Debe existir un cliente para agregar una cuenta bancaria.
         cls_()
         cliente = encontrar_valor(bd.clientes, "cedula", input_alpha_r("Cédula cliente:"))
         if cliente is not None:
@@ -131,6 +152,9 @@ class AppUtil:
     def menu_clientes(self):
         self.menu_list("CLIENTES", self.o_clientes)
 
+    def menu_empleados(self):
+        self.menu_list("CLIENTES", self.o_empleados)
+
     def menu_cuentas(self):
         self.menu_list("CUENTAS_BANCARIAS", self.o_cuentas)
 
@@ -142,16 +166,24 @@ class AppUtil:
 
     o_principal = {}
     o_principal[1] = {"t": "Menú de Clientes", "f": menu_clientes}
-    o_principal[2] = {"t": "Menú de Cuentas Bancarias", "f": menu_cuentas}
-    o_principal[3] = {"t": "Menú de Transacciones", "f": menu_transacciones}
+    o_principal[2] = {"t": "Menú de Empleados", "f": menu_empleados}
+    o_principal[3] = {"t": "Menú de Cuentas Bancarias", "f": menu_cuentas}
+    o_principal[4] = {"t": "Menú de Transacciones", "f": menu_transacciones}
 
     o_clientes = {}
     o_clientes[1] = {"t": "Agregar cliente", "f": add_cliente}
     o_clientes[2] = {"t": "Inactivar cliente", "f": inactivar_cliente}
     o_clientes[3] = {"t": "Listar clientes", "f": listar_clientes}
-    o_clientes[4] = {"t": "Contactos", "f": listar_clientes}
-    o_clientes[5] = {"t": "Volver", "f": menu}
-    o_clientes[6] = {"t": "Salir", "f": salir}
+    o_clientes[4] = {"t": "Volver", "f": menu}
+    o_clientes[5] = {"t": "Salir", "f": salir}
+
+    o_empleados = {}
+    o_empleados[1] = {"t": "Agregar empleado", "f": add_empleado}
+    o_empleados[2] = {"t": "Inactivar empleado", "f": inactivar_empleado}
+    o_empleados[3] = {"t": "Listar empleado", "f": listar_empleado}
+    o_empleados[4] = {"t": "Actualizar Salario", "f": actualizar_salario}
+    o_empleados[5] = {"t": "Volver", "f": menu}
+    o_empleados[6] = {"t": "Salir", "f": salir}
 
     o_cuentas = {}
     o_cuentas[1] = {"t": "Agregar Cuenta", "f": add_cuenta_bancaria}

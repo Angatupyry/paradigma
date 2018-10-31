@@ -117,12 +117,13 @@ def encontrar_valor(lista, identificador, text):
         if str(existe) == str(text):
             return val
 
+
 def encontrar_valor_array(lista, identificador, text):
     array = []
     for val in lista:
         existe = getattr(val, identificador)
         if existe == text:
-             array.append(val)
+            array.append(val)
     return array
 
 
@@ -149,6 +150,10 @@ def cargar_datos():
     bd.clientes = cargar(f1)
     f1.close()
 
+    f1 = abrir(path + "/empleados", "rb")
+    bd.empleados = cargar(f1)
+    f1.close()
+
     f1 = abrir(path + "/ctacteBancarias", "rb")
     bd.ctacteBancarias = cargar(f1)
     f1.close()
@@ -156,6 +161,7 @@ def cargar_datos():
     f1 = abrir(path + "/transacciones", "rb")
     bd.transacciones = cargar(f1)
     f1.close()
+
 
 def print_objeto(objeto):
     objeto = vars(objeto)

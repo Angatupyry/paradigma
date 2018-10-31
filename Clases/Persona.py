@@ -36,7 +36,7 @@ class Persona(metaclass=ABCMeta):
     prompt_init = staticmethod(prompt_init)
 
 
-# ------------------------------------------------------------------
+# ---------------------------CLASE EMPLEADO---------------------------------------
 class Empleado(Persona):
     """Clase extendida de Persona que detalla al empleado"""
     cant_empleado = 0
@@ -49,24 +49,23 @@ class Empleado(Persona):
     def actualizarSalario(self, salario):
         self.salario = salario
 
-    def prompt_init(self):
-        parent_init = Persona.promp_init()
-        datos = Contacto.prompt_init
-        contacto = Contacto(**datos)
+    def prompt_init():
+        """Se crea un diccionario con los indices y valores necesarios para
+        instanciar al objeto"""
+        parent_init = Persona.prompt_init()
         salario = input_entero_r("Ingrese Salario")
-        parent_init.update({"Contacto": contacto,
-                            "Salario": salario})
+        parent_init.update({"salario": salario})
+        return parent_init
 
-        prompt_init = staticmethod(self.prompt_init)
+    prompt_init = staticmethod(prompt_init)
 
-
-# ---------------------------------------------------------------------
+# -----------------------------CLASE CLIENTE----------------------------------------
 class Cliente(Persona):
-    """Clase que hereda de persona que detalla a un cliente"""
+    """Clase que hereda de persona y detalla a un cliente"""
     cant_cliente = 0
 
     def __init__(self, cedula, nombre, apellido, direccion, contacto=None, ruc=None,
-                 cuentas_bancarias = None):
+                 cuentas_bancarias=None):
         super().__init__(cedula, nombre, apellido, direccion, contacto)
         self.ruc = ruc
         self.cuentas_bancarias = []
@@ -76,7 +75,7 @@ class Cliente(Persona):
     def prompt_init():
         """Se crea un diccionario con los indices y valores necesarios para
         instanciar al objeto"""
-        #TODO Agregar contactos
+        # TODO Agregar contactos
         parent_init = Persona.prompt_init()
         ruc = input_alpha("Ingrese Ruc")
         parent_init.update({"ruc": ruc})
