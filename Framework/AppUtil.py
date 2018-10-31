@@ -1,7 +1,7 @@
 import Datos.Bd as bd
 from Clases.Persona import Cliente, Telefono, Empleado
 from Clases.CuentaBancaria import CuentaBancaria
-from Clases.Transaccion import Deposito, Reversible
+from Clases.Transaccion import Deposito, Reversible, Extraccion
 from Framework.Util import *
 
 
@@ -64,6 +64,10 @@ class AppUtil:
         else:
             print("No existe cuenta")
 
+    # Transacciones
+    def listar_transacciones(self):
+        self.listar_datos(bd.transacciones)
+
     # Depósito
     def new_deposito(self):
         """Realizar un depósito a una cuenta bancaria"""
@@ -85,9 +89,25 @@ class AppUtil:
         else:
             print("No se encontró ningún depósito con ese número de transacción")
 
-    # Transacciones
-    def listar_transacciones(self):
-        self.listar_datos(bd.transacciones)
+    # Extracción
+    def extraer(self):
+        cls_()
+        ctacte = encontrar_valor(bd.ctacteBancarias, "numero_cuenta", input_alpha_r("Nro Cuenta:"))
+        if ctacte is not None:
+            #Diccionario para inicializar el objeto
+            dic_ext = Extraccion.prompt_init()
+            dic_ext.update({"cuenta_cliente": ctacte.numero_cuenta})
+            extraccion = Extraccion(**dic_ext)
+            #Instancia de la cuenta bancaria para consultar el saldo
+            cuenta_cliente = CuentaBancaria(ctacte.numero_cuenta, ctacte.cedula_cliente)
+            saldo_actual = cuenta_cliente.obtener_saldo()
+            if saldo_actual < extraccion.monto:
+                print("No cuenta con suficiente monto, el sobregiro no está permitido")
+            else:
+                extraccion.realizarTransaccion(extraccion.monto, ctacte.numero_cuenta)
+                bd.transacciones.append(extraccion)
+        else:
+            print("No existe una cuenta bancaria con ese número de cuenta")
 
     # Funciones Úitles
     def inactivar(self, lista, dato):
@@ -193,8 +213,9 @@ class AppUtil:
 
     o_transacciones = {}
     o_transacciones[1] = {"t": "Depósito", "f": menu_deposito}
-    o_transacciones[2] = {"t": "Listar transacciones", "f": listar_transacciones}
-    o_transacciones[3] = {"t": "Volver", "f": menu}
+    o_transacciones[2] = {"t": "Extracción", "f": extraer}
+    o_transacciones[3] = {"t": "Listar transacciones", "f": listar_transacciones}
+    o_transacciones[4] = {"t": "Volver", "f": menu}
 
     o_deposito = {}
     o_deposito[1] = {"t": "Nuevo Depósito", "f": new_deposito}

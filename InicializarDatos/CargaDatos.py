@@ -1,5 +1,5 @@
 from pickle import dump
-
+from datetime import datetime, date
 from Clases.Banco import *
 from Clases.Persona import *
 from Clases.CuentaBancaria import CuentaBancaria
@@ -32,8 +32,8 @@ def inicializar_datos():
     f.close()
 
     # Transacciones
-    bd.transacciones.append(Deposito(10, 34, 45000, 800))
-    bd.transacciones.append(Deposito(9, 34, 45000,800 ))
+    bd.transacciones.append(Deposito(10, datetime.now(), 45000, 800))
+    bd.transacciones.append(Deposito(9, datetime.now(), 45000,800 ))
     f = abrir(path + "/transacciones", "wb")
     dump(bd.transacciones, f)
     f.close()

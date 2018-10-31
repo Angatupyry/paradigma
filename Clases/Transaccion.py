@@ -29,8 +29,8 @@ class Deposito(Transaccion):
         self.cuenta_cliente = cuenta_bancaria
 
     def revertir(self):
-        a = Deposito(self.nro_transaccion, self.fecha, self.monto * -1, self.cuenta_cliente)
-        bd1.transacciones.append(a)
+        d = Deposito(self.nro_transaccion, self.fecha, self.monto * -1, self.cuenta_cliente)
+        bd1.transacciones.append(d)
 
     def prompt_init():
         return dict(nro_transaccion=input_entero_r("Ingrese nro. transaccion: "),
@@ -45,7 +45,19 @@ class Transferencia(Transaccion):
 
 
 class Extraccion(Transaccion):
-    pass
+    def __init__(self, nro_transaccion, fecha, monto, cuenta_cliente):
+        super().__init__(nro_transaccion, fecha, monto, cuenta_cliente)
+
+    def realizarTransaccion(self, monto, cuenta_bancaria):
+        self.monto = monto * -1
+        self.cuenta_cliente = cuenta_bancaria
+
+    def prompt_init():
+        return dict(nro_transaccion=input_entero_r("Ingrese nro. transaccion: "),
+                    fecha=input_entero_r("Ingrese Fecha:"),
+                    monto=input_entero_r("Ingrese Monto:"))
+
+    prompt_init = staticmethod(prompt_init)
 
 
 class Reversible(metaclass=ABCMeta):
@@ -56,6 +68,3 @@ class Reversible(metaclass=ABCMeta):
 
 # TODO TRANSACCIONES, AGREGAR TIPOS QUE FALTAN.
 # TODO AGREGAR UN MENÚ PARA CONTACTOS, DESDE MENÚ CLIENTES.
-# TODO IMPRIMIR OBJETOS.
-# TODO VOLVER EN TODOS LOS MENÚS.
-# TODO MENÚ EMPLEADO, SET SALARIO.
