@@ -1,9 +1,8 @@
 from abc import ABCMeta, abstractmethod
 
 import Datos.Bd as bd1
-import Framework.AppUtil
 
-from Framework.Util import input_entero_r, encontrar_valor, input_alpha_r
+from Framework.Util import input_entero_r
 
 
 class Transaccion(metaclass=ABCMeta):
@@ -65,6 +64,3 @@ class Reversible(metaclass=ABCMeta):
         pass
 
     pass
-
-# TODO TRANSACCIONES, AGREGAR TIPOS QUE FALTAN.
-# TODO AGREGAR UN MENÚ PARA CONTACTOS, DESDE MENÚ CLIENTES.

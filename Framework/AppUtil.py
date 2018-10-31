@@ -77,7 +77,11 @@ class AppUtil:
             deposito = Deposito.prompt_init()
             deposito.update({"cuenta_cliente": ctacte.numero_cuenta})
             add_deposito = Deposito(**deposito)
-            bd.transacciones.append(add_deposito)
+            transferencia = encontrar_valor(bd.transacciones, "nro_transaccion", add_deposito.nro_transaccion)
+            if transferencia is None:
+                bd.transacciones.append(add_deposito)
+            else:
+                print("Ya existe una transacción con ese número.")
         else:
             print("No existe una cuenta bancaria con ese número de cuenta")
 
