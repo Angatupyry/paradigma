@@ -39,12 +39,6 @@ class Telefono(Contacto):
     def modificar(self):
         pass
 
-    def prompt_init():
-        return dict(telefono=input_entero_r("Nro. teléfono: "))
-
-    prompt_init = staticmethod(prompt_init)
-
-
 class RedSocial(Contacto):
     pass
 

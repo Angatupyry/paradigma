@@ -13,7 +13,12 @@ class AppUtil:
     # Cliente
     def add_cliente(self):
         cls_()
-        bd.clientes.append(Cliente(**Cliente.prompt_init()))
+        cedula = input_entero_r("Ingrese cédula")
+        nombre = input_alpha_r("Ingrese Nombre").title()
+        apellido = input_alpha_r("Ingrese Apellido").title()
+        direccion = input_alpha("Ingrese Dirección")
+        ruc = input_alpha("Ingrese Ruc")
+        bd.clientes.append(Cliente(cedula, nombre, apellido, direccion, ruc))
 
     def inactivar_cliente(self):
         dato = encontrar_valor(bd.clientes, "cedula", input_alpha_r("Ingrese numero de cedula "))
@@ -26,7 +31,12 @@ class AppUtil:
     # Empleado
     def add_empleado(self):
         cls_()
-        bd.empleados.append(Empleado(**Empleado.prompt_init()))
+        cedula = input_entero_r("Ingrese cédula")
+        nombre = input_alpha_r("Ingrese Nombre").title()
+        apellido = input_alpha_r("Ingrese Apellido").title()
+        direccion = input_alpha("Ingrese Dirección")
+        salario = input_entero_r("Ingrese Salario")
+        bd.empleados.append(Empleado(cedula, nombre, apellido, direccion, salario))
 
     def inactivar_empleado(self):
         dato = encontrar_valor(bd.empleados, "cedula", input_alpha_r("Ingrese número de cédula "))
@@ -60,7 +70,8 @@ class AppUtil:
         cls_()
         cuentabancaria = encontrar_valor(bd.ctacteBancarias, "numero_cuenta", input_alpha_r("Ingrese número de cuenta"))
         if cuentabancaria is not None:
-            print(cuentabancaria.obtener_saldo())
+            if cuentabancaria.obtener_saldo() == -1:
+                print("No existen movimientos")
         else:
             print("No existe cuenta")
 
@@ -74,9 +85,10 @@ class AppUtil:
         cls_()
         ctacte = encontrar_valor(bd.ctacteBancarias, "numero_cuenta", input_alpha_r("Nro Cuenta:"))
         if ctacte is not None:
-            deposito = Deposito.prompt_init()
-            deposito.update({"cuenta_cliente": ctacte.numero_cuenta})
-            add_deposito = Deposito(**deposito)
+            nro_transaccion = input_entero_r("Ingrese nro. transaccion: ")
+            fecha = input_entero_r("Ingrese Fecha:")
+            monto = input_entero_r("Ingrese Monto:")
+            add_deposito = Deposito(nro_transaccion, fecha, monto, ctacte.numero_cuenta)
             transferencia = encontrar_valor(bd.transacciones, "nro_transaccion", add_deposito.nro_transaccion)
             if transferencia is None:
                 bd.transacciones.append(add_deposito)
@@ -99,9 +111,10 @@ class AppUtil:
         ctacte = encontrar_valor(bd.ctacteBancarias, "numero_cuenta", input_alpha_r("Nro Cuenta:"))
         if ctacte is not None:
             #Diccionario para inicializar el objeto
-            dic_ext = Extraccion.prompt_init()
-            dic_ext.update({"cuenta_cliente": ctacte.numero_cuenta})
-            extraccion = Extraccion(**dic_ext)
+            nro_transaccion = input_entero_r("Ingrese nro. transaccion: ")
+            fecha = input_entero_r("Ingrese Fecha:")
+            monto = input_entero_r("Ingrese Monto:")
+            extraccion = Extraccion(nro_transaccion, fecha, monto, ctacte.numero_cuenta)
             #Instancia de la cuenta bancaria para consultar el saldo
             cuenta_cliente = CuentaBancaria(ctacte.numero_cuenta, ctacte.cedula_cliente)
             saldo_actual = cuenta_cliente.obtener_saldo()

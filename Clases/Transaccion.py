@@ -31,13 +31,6 @@ class Deposito(Transaccion):
         d = Deposito(self.nro_transaccion, self.fecha, self.monto * -1, self.cuenta_cliente)
         bd1.transacciones.append(d)
 
-    def prompt_init():
-        return dict(nro_transaccion=input_entero_r("Ingrese nro. transaccion: "),
-                    fecha=input_entero_r("Ingrese Fecha:"),
-                    monto=input_entero_r("Ingrese Monto:"))
-
-    prompt_init = staticmethod(prompt_init)
-
 
 class Transferencia(Transaccion):
     pass
@@ -50,13 +43,6 @@ class Extraccion(Transaccion):
     def realizarTransaccion(self, monto, cuenta_bancaria):
         self.monto = monto * -1
         self.cuenta_cliente = cuenta_bancaria
-
-    def prompt_init():
-        return dict(nro_transaccion=input_entero_r("Ingrese nro. transaccion: "),
-                    fecha=input_entero_r("Ingrese Fecha:"),
-                    monto=input_entero_r("Ingrese Monto:"))
-
-    prompt_init = staticmethod(prompt_init)
 
 
 class Reversible(metaclass=ABCMeta):

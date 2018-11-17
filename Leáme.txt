@@ -1,8 +1,11 @@
-
 Verificar que el path dentro del módulo Framework.Util y en InicializarDatos.CargaDatos.py sean la ubicación correcta dentro del computador.
+
 Para lanzar el programa basta con ejectutar el archivo <<App.py>>
+
 El menú principal cuenta de; Clientes, Cuentas Bancarias, Transacciones.
+
 Cada uno de los ítems mencionados arriba, vuelven a tener opciones.
+
 De los tipos de transferencias, solo está implementado <<Depósito>>, que a la vez puede ser revertido.
+
 El programa ya viene con datos precargados, ubicados en el paquete <<Inicializar Datos>>, archivo: CargarDatos.py
-ss

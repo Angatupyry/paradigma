@@ -18,4 +18,4 @@ class CuentaBancaria:
                 saldo += transaccion.monto
             return saldo
         else:
-            return "No existe movimiento"
+            return -1
