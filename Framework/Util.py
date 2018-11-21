@@ -9,8 +9,7 @@ path = "/home/fierro/Desktop/paradigma/Datos"
 # path = "/home/cba/Escritorio/paradigma/Datos"  # CBA
 
 def cls():
-    """Permite limpiar la consola de python para que sea mas comodo usarla"""
-    os.system("clear")
+    pass
 
 
 def cls_():
