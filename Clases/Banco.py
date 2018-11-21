@@ -1,5 +1,4 @@
 from abc import ABCMeta
-from Clases.Persona import Cliente
 
 
 class Empresa(metaclass=ABCMeta):

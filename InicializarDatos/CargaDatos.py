@@ -27,13 +27,15 @@ def inicializar_datos():
 
     # CtacteBancaroas
     bd.ctacteBancarias.append(CuentaBancaria(800, 2))
+    bd.ctacteBancarias.append(CuentaBancaria(900, 1))
     f = abrir(path + "/ctacteBancarias", "wb")
     dump(bd.ctacteBancarias, f)
     f.close()
 
     # Transacciones
     bd.transacciones.append(Deposito(10, datetime.now(), 45000, 800))
-    bd.transacciones.append(Deposito(9, datetime.now(), 45000,800 ))
+    bd.transacciones.append(Deposito(9, datetime.now(), 45000,800))
+    bd.transacciones.append(Deposito(11, datetime.now(), 45000, 900))
     f = abrir(path + "/transacciones", "wb")
     dump(bd.transacciones, f)
     f.close()

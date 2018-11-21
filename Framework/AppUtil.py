@@ -1,7 +1,7 @@
 import Datos.Bd as bd
 from Clases.Persona import Cliente, Telefono, Empleado
 from Clases.CuentaBancaria import CuentaBancaria
-from Clases.Transaccion import Deposito, Reversible, Extraccion
+from Clases.Transaccion import Deposito, Reversible, Extraccion, Transferencia
 from Framework.Util import *
 
 
@@ -72,6 +72,8 @@ class AppUtil:
         if cuentabancaria is not None:
             if cuentabancaria.obtener_saldo() == -1:
                 print("No existen movimientos")
+            else:
+                print(cuentabancaria.obtener_saldo())
         else:
             print("No existe cuenta")
 
@@ -110,12 +112,12 @@ class AppUtil:
         cls_()
         ctacte = encontrar_valor(bd.ctacteBancarias, "numero_cuenta", input_alpha_r("Nro Cuenta:"))
         if ctacte is not None:
-            #Diccionario para inicializar el objeto
+            # Diccionario para inicializar el objeto
             nro_transaccion = input_entero_r("Ingrese nro. transaccion: ")
             fecha = input_entero_r("Ingrese Fecha:")
             monto = input_entero_r("Ingrese Monto:")
             extraccion = Extraccion(nro_transaccion, fecha, monto, ctacte.numero_cuenta)
-            #Instancia de la cuenta bancaria para consultar el saldo
+            # Instancia de la cuenta bancaria para consultar el saldo
             cuenta_cliente = CuentaBancaria(ctacte.numero_cuenta, ctacte.cedula_cliente)
             saldo_actual = cuenta_cliente.obtener_saldo()
             if saldo_actual < extraccion.monto:
@@ -123,6 +125,31 @@ class AppUtil:
             else:
                 extraccion.realizarTransaccion(extraccion.monto, ctacte.numero_cuenta)
                 bd.transacciones.append(extraccion)
+        else:
+            print("No existe una cuenta bancaria con ese número de cuenta")
+
+    # Transferencia
+    def transferir(self):
+        cls_()
+        ctacteOrigen = encontrar_valor(bd.ctacteBancarias, "numero_cuenta", input_alpha_r("Cuenta Oirgen:"))
+        ctacteDestino = encontrar_valor(bd.ctacteBancarias, "numero_cuenta", input_alpha_r("Cuenta a Destino:"))
+        if ctacteOrigen is not None and ctacteDestino is not None:
+            # Diccionario para inicializar el objeto
+            nro_transaccion = input_entero_r("Ingrese nro. transaccion: ")
+            fecha = input_entero_r("Ingrese Fecha:")
+            monto = input_entero_r("Ingrese Monto:")
+            transferenciaOrigen = Transferencia(nro_transaccion, fecha, monto, ctacteOrigen.numero_cuenta)
+            transferenciaDestino = Transferencia(nro_transaccion, fecha, monto, ctacteDestino.numero_cuenta)
+            # Instancia de la cuenta bancaria para consultar el saldo
+            cuenta_cliente = CuentaBancaria(ctacteOrigen.numero_cuenta, ctacteOrigen.cedula_cliente)
+            saldo_actual = cuenta_cliente.obtener_saldo()
+            if saldo_actual < transferenciaOrigen.monto:
+                print("No cuenta con suficiente monto, el sobregiro no está permitido")
+            else:
+                transferenciaOrigen.realizarTransaccion(transferenciaOrigen.monto, ctacteOrigen.numero_cuenta)
+                transferenciaDestino.aumentarCuentaTransferida(monto, ctacteDestino.numero_cuenta)
+                bd.transacciones.append(transferenciaOrigen)
+                bd.transacciones.append(transferenciaDestino)
         else:
             print("No existe una cuenta bancaria con ese número de cuenta")
 
@@ -231,8 +258,9 @@ class AppUtil:
     o_transacciones = {}
     o_transacciones[1] = {"t": "Depósito", "f": menu_deposito}
     o_transacciones[2] = {"t": "Extracción", "f": extraer}
-    o_transacciones[3] = {"t": "Listar transacciones", "f": listar_transacciones}
-    o_transacciones[4] = {"t": "Volver", "f": menu}
+    o_transacciones[3] = {"t": "Transferencia", "f": transferir}
+    o_transacciones[4] = {"t": "Listar transacciones", "f": listar_transacciones}
+    o_transacciones[5] = {"t": "Volver", "f": menu}
 
     o_deposito = {}
     o_deposito[1] = {"t": "Nuevo Depósito", "f": new_deposito}
