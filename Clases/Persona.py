@@ -1,6 +1,5 @@
 from abc import ABCMeta
 
-from Clases import Contacto
 from Clases.Contacto import *
 
 

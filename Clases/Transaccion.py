@@ -16,7 +16,16 @@ class Transaccion(metaclass=ABCMeta):
         pass
 
 
-class Deposito(Transaccion):
+class Reversible(metaclass=ABCMeta):
+
+    @abstractmethod
+    def revertir(self):
+        pass
+
+    pass
+
+
+class Deposito(Transaccion, Reversible):
     def __init__(self, nro_transaccion, fecha, monto, cuenta_cliente):
         super().__init__(nro_transaccion, fecha, monto, cuenta_cliente)
 
@@ -49,10 +58,3 @@ class Extraccion(Transaccion):
     def realizarTransaccion(self, monto, cuenta_bancaria):
         self.monto = monto * -1
         self.cuenta_cliente = cuenta_bancaria
-
-
-class Reversible(metaclass=ABCMeta):
-    def revertir(self):
-        pass
-
-    pass

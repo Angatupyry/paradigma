@@ -1,6 +1,6 @@
 import Datos.Bd as bd1
 
-from Framework.Util import input_entero_r, encontrar_valor, input_alpha_r, encontrar_valor_array
+from Framework.Util import encontrar_valor_array
 
 
 class CuentaBancaria:

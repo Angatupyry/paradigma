@@ -131,25 +131,25 @@ class AppUtil:
     # Transferencia
     def transferir(self):
         cls_()
-        ctacteOrigen = encontrar_valor(bd.ctacteBancarias, "numero_cuenta", input_alpha_r("Cuenta Oirgen:"))
-        ctacteDestino = encontrar_valor(bd.ctacteBancarias, "numero_cuenta", input_alpha_r("Cuenta a Destino:"))
-        if ctacteOrigen is not None and ctacteDestino is not None:
-            # Diccionario para inicializar el objeto
-            nro_transaccion = input_entero_r("Ingrese nro. transaccion: ")
+        ctacte_origen = encontrar_valor(bd.ctacteBancarias, "numero_cuenta", input_alpha_r("Cuenta Oirgen:"))
+        ctacte_destino = encontrar_valor(bd.ctacteBancarias, "numero_cuenta", input_alpha_r("Cuenta Destino:"))
+        if ctacte_origen is not None and ctacte_destino is not None:
+            nro_transaccion = input_entero_r("Ingrese nro. transacción: ")
             fecha = input_entero_r("Ingrese Fecha:")
             monto = input_entero_r("Ingrese Monto:")
-            transferenciaOrigen = Transferencia(nro_transaccion, fecha, monto, ctacteOrigen.numero_cuenta)
-            transferenciaDestino = Transferencia(nro_transaccion, fecha, monto, ctacteDestino.numero_cuenta)
+            transferencia_origen = Transferencia(nro_transaccion, fecha, monto, ctacte_origen.numero_cuenta)
+            transferencia_destino = Transferencia(nro_transaccion, fecha, monto, ctacte_destino.numero_cuenta)
             # Instancia de la cuenta bancaria para consultar el saldo
-            cuenta_cliente = CuentaBancaria(ctacteOrigen.numero_cuenta, ctacteOrigen.cedula_cliente)
+            cuenta_cliente = CuentaBancaria(ctacte_origen.numero_cuenta, ctacte_origen.cedula_cliente)
             saldo_actual = cuenta_cliente.obtener_saldo()
-            if saldo_actual < transferenciaOrigen.monto:
+
+            if saldo_actual < transferencia_origen.monto:
                 print("No cuenta con suficiente monto, el sobregiro no está permitido")
             else:
-                transferenciaOrigen.realizarTransaccion(transferenciaOrigen.monto, ctacteOrigen.numero_cuenta)
-                transferenciaDestino.aumentarCuentaTransferida(monto, ctacteDestino.numero_cuenta)
-                bd.transacciones.append(transferenciaOrigen)
-                bd.transacciones.append(transferenciaDestino)
+                transferencia_origen.realizarTransaccion(transferencia_origen.monto, ctacte_origen.numero_cuenta)
+                transferencia_destino.aumentarCuentaTransferida(monto, ctacte_destino.numero_cuenta)
+                bd.transacciones.append(transferencia_origen)
+                bd.transacciones.append(transferencia_destino)
         else:
             print("No existe una cuenta bancaria con ese número de cuenta")
 
@@ -186,7 +186,6 @@ class AppUtil:
 
     # Menú Principal
     def menu(self):
-        """Menú principal"""
         while True:
             cls()
             print("-----------------------------------------------------------")
