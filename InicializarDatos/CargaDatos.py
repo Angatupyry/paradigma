@@ -4,6 +4,7 @@ from Clases.Banco import *
 from Clases.Persona import *
 from Clases.CuentaBancaria import CuentaBancaria
 from Clases.Transaccion import Deposito
+from Clases.Usuario import Usuario
 
 
 def inicializar_datos():
@@ -38,4 +39,10 @@ def inicializar_datos():
     bd.transacciones.append(Deposito(11, datetime.now(), 45000, 900))
     f = abrir(path + "/transacciones", "wb")
     dump(bd.transacciones, f)
+    f.close()
+
+    # User
+    bd.usuarios.append(Usuario("crolon", "c"))
+    f = abrir(path + "usuarios", "wb")
+    dump(bd.usuarios, f)
     f.close()

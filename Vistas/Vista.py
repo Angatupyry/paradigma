@@ -1,5 +1,7 @@
 from Framework.Util import encontrar_valor
 from Formularios.ClienteForm import *
+from Framework.VistaUtil import list_cliente
+
 bgC = "black"
 p_pri = "700x400+150+100"
 p_sec = "500x300+250+180"
@@ -20,19 +22,61 @@ class PanelPrincipal(Frame):
     def inicializar(self):
         self.__panel_master.geometry(p_pri)
         self.__panel_master.title("MENU PRINCIPAL")
-        self.__panel_master.protocol("WM_DELETE_WINDOW", "onexit")
+        self.__panel_master.protocol("WM_DELETE_WINDOW", self.on_exit)
         self.__panel_master.resizable(0, 0)
         self.__panel_master.config(bg=bgC)
         menubar = Menu(self.__panel_master)
         self.__panel_master.config(menu=menubar)
 
+
         # Menú Cliente
         menu_cliente = Menu(menubar, tearoff=0)
         menu_cliente.add_command(label="Agregar cliente", command=self.add_cliente)
-        menu_cliente.add_command(label="Eliminar cliente", command=self.del_cliente)
         menu_cliente.add_command(label="Listar clientes", command=self.listar_cliente)
-        menu_cliente.add_command(label="Agregar contacto a cliente", command=self.edit_cliente)
         menubar.add_cascade(label="Clientes", menu=menu_cliente)
+
+        # Depósito
+        menu_deposito = Menu(menubar, tearoff=0)
+        menu_deposito.add_command(label="Depósito", command=self.add_cliente)
+
+        #Transacciones
+        menu_transacciones = Menu(menubar, tearoff=0)
+        menu_transacciones.add_cascade(label="Depósito", menu=menu_deposito)
+        menu_transacciones.add_command(label="Extracción", command=self.add_cliente)
+        menu_transacciones.add_command(label="Transferencia", command=self.add_cliente)
+        menubar.add_cascade(label="Transacciones", menu=menu_transacciones)
+
+
+        # Salir
+        menu_opciones = Menu(menubar, tearoff=0)
+        menu_opciones.add_command(label="Cerrar Sesión", command=self.cerrar_sesion)
+        menu_opciones.add_command(label="Salir", command=self.salir)
+        menubar.add_cascade(label="Opciones", menu=menu_opciones)
+
+    def on_exit(self):
+        if messagebox.askyesno("Salir", "¿Desea salir de la aplicación?"):
+            self.destroy = self.destroy()
+            self.salir()
+
+    def cerrar_sesion(self):
+        self.limpiar()
+        self.__vista_actual = PanelLogin(self.__panel_master)
+
+    def salir(self):
+        exit()
+
+    def limpiar(self):
+        if self.__vista_actual:
+            self.__vista_actual.destroy()
+
+    def add_cliente(self):
+        self.limpiar()
+        form = AddCliente(self.__panel_master)
+        self.__vista_actual = form
+
+    def listar_cliente(self):
+        list_cliente()
+        pass
 
 class PanelLogin(PanedWindow):
     """Panel de login"""
@@ -48,7 +92,7 @@ class PanelLogin(PanedWindow):
 
     def inicializar(self):
         self.__panel_master.geometry(p_pri)
-        self.__panel_master.title("MENU Login")
+        self.__panel_master.title("Login")
         self.__panel_master.protocol("WM_DELETE_WINDOW", "onexit")
         self.__panel_master.resizable(0, 0)
         self.__panel_master.config(bg=bgC)
@@ -71,3 +115,8 @@ class PanelLogin(PanedWindow):
             self.password.grid(row=2, column=2)
         return self.password
 
+    def login(self):
+        val = encontrar_valor(bd.usuarios, "user", self.user.get())
+        if val is not None:
+            messagebox.showinfo("", "Login exitoso.")
+            self.destroy()
