@@ -1,6 +1,7 @@
+from Formularios.ExtraccionForm import AddExtraccion
 from Framework.Util import encontrar_valor
 from Formularios.ClienteForm import *
-from Framework.VistaUtil import list_cliente
+from Framework.VistaUtil import list_cliente, list_transacciones
 
 bgC = "black"
 p_pri = "700x400+150+100"
@@ -42,8 +43,9 @@ class PanelPrincipal(Frame):
         #Transacciones
         menu_transacciones = Menu(menubar, tearoff=0)
         menu_transacciones.add_cascade(label="Depósito", menu=menu_deposito)
-        menu_transacciones.add_command(label="Extracción", command=self.add_cliente)
+        menu_transacciones.add_command(label="Extracción", command=self.add_extraccion)
         menu_transacciones.add_command(label="Transferencia", command=self.add_cliente)
+        menu_transacciones.add_command(label="Listar Transacciones", command=self.listar_transacciones)
         menubar.add_cascade(label="Transacciones", menu=menu_transacciones)
 
 
@@ -74,9 +76,18 @@ class PanelPrincipal(Frame):
         form = AddCliente(self.__panel_master)
         self.__vista_actual = form
 
+    def add_extraccion(self):
+        self.limpiar()
+        form = AddExtraccion(self.__panel_master)
+        self.form = form
+        self.__vista_actual = self.form
+
     def listar_cliente(self):
         list_cliente()
-        pass
+
+    def listar_transacciones(self):
+        list_transacciones()
+
 
 class PanelLogin(PanedWindow):
     """Panel de login"""
