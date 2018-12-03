@@ -15,7 +15,7 @@ class CuentaBancaria:
         if transacciones.__len__() > 0:
             saldo = 0
             for transaccion in transacciones:
-                saldo += transaccion.monto
+                saldo += int(transaccion.monto)
             return saldo
         else:
             return -1

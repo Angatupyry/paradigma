@@ -1,4 +1,6 @@
+from Formularios.DepositoForm import AddDeposito
 from Formularios.ExtraccionForm import AddExtraccion
+from Formularios.TransferenciaForm import AddTransferencia
 from Framework.Util import encontrar_valor
 from Formularios.ClienteForm import *
 from Framework.VistaUtil import list_cliente, list_transacciones
@@ -29,7 +31,6 @@ class PanelPrincipal(Frame):
         menubar = Menu(self.__panel_master)
         self.__panel_master.config(menu=menubar)
 
-
         # Menú Cliente
         menu_cliente = Menu(menubar, tearoff=0)
         menu_cliente.add_command(label="Agregar cliente", command=self.add_cliente)
@@ -38,16 +39,16 @@ class PanelPrincipal(Frame):
 
         # Depósito
         menu_deposito = Menu(menubar, tearoff=0)
-        menu_deposito.add_command(label="Depósito", command=self.add_cliente)
+        menu_deposito.add_command(label="Depósito", command=self.add_deposito)
+        menu_deposito.add_command(label="Revertir Depósito", command=self.add_deposito)
 
-        #Transacciones
+        # Transacciones
         menu_transacciones = Menu(menubar, tearoff=0)
         menu_transacciones.add_cascade(label="Depósito", menu=menu_deposito)
         menu_transacciones.add_command(label="Extracción", command=self.add_extraccion)
-        menu_transacciones.add_command(label="Transferencia", command=self.add_cliente)
+        menu_transacciones.add_command(label="Transferencia", command=self.add_transferencia)
         menu_transacciones.add_command(label="Listar Transacciones", command=self.listar_transacciones)
         menubar.add_cascade(label="Transacciones", menu=menu_transacciones)
-
 
         # Salir
         menu_opciones = Menu(menubar, tearoff=0)
@@ -76,9 +77,20 @@ class PanelPrincipal(Frame):
         form = AddCliente(self.__panel_master)
         self.__vista_actual = form
 
+    def add_deposito(self):
+        self.limpiar()
+        form = AddDeposito(self.__panel_master)
+        self.__vista_actual = form
+
     def add_extraccion(self):
         self.limpiar()
         form = AddExtraccion(self.__panel_master)
+        self.form = form
+        self.__vista_actual = self.form
+
+    def add_transferencia(self):
+        self.limpiar()
+        form = AddTransferencia(self.__panel_master)
         self.form = form
         self.__vista_actual = self.form
 
