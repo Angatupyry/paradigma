@@ -1,3 +1,4 @@
+from Formularios.CuentaBancariaForm import CuentaBancariaForm
 from Formularios.DepositoForm import AddDeposito
 from Formularios.ExtraccionForm import AddExtraccion
 from Formularios.TransferenciaForm import AddTransferencia
@@ -50,6 +51,11 @@ class PanelPrincipal(Frame):
         menu_transacciones.add_command(label="Listar Transacciones", command=self.listar_transacciones)
         menubar.add_cascade(label="Transacciones", menu=menu_transacciones)
 
+        # Menú Cuentas
+        menu_cuentas = Menu(menubar, tearoff=0)
+        menu_cuentas.add_command(label="Consultar Saldo", command=self.consultar_saldo)
+        menubar.add_cascade(label="Cuentas Bancarias", menu=menu_cuentas)
+
         # Salir
         menu_opciones = Menu(menubar, tearoff=0)
         menu_opciones.add_command(label="Cerrar Sesión", command=self.cerrar_sesion)
@@ -75,6 +81,11 @@ class PanelPrincipal(Frame):
     def add_cliente(self):
         self.limpiar()
         form = AddCliente(self.__panel_master)
+        self.__vista_actual = form
+
+    def consultar_saldo(self):
+        self.limpiar()
+        form = CuentaBancariaForm(self.__panel_master)
         self.__vista_actual = form
 
     def add_deposito(self):
