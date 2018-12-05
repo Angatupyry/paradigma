@@ -121,7 +121,7 @@ def encontrar_valor_array(lista, identificador, text):
     array = []
     for val in lista:
         existe = getattr(val, identificador)
-        if existe == text:
+        if str(existe) == str(text):
             array.append(val)
     return array
 

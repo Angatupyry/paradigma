@@ -4,7 +4,7 @@ from tkinter import messagebox
 import Datos.Bd as bd
 from Clases.CuentaBancaria import CuentaBancaria
 from Clases.Transaccion import Extraccion, Deposito
-from Framework.Util import encontrar_valor
+from Framework.Util import encontrar_valor, encontrar_valor_array
 
 
 class CuentaBancariaForm(PanedWindow):
@@ -33,29 +33,27 @@ class CuentaBancariaForm(PanedWindow):
     def procesar(self):
         try:
             if self.get_cuenta_nro_entry().get() != "":
-                if messagebox.askyesno("Procesar", "Procesar solicitud?"):
-                    val = encontrar_valor(bd.ctacteBancarias, "numero_cuenta", self.get_cuenta_nro_entry().get())
+                if messagebox.askyesno("Procesar", "¿Consultar Saldo?"):
+                    val = encontrar_valor_array(bd.transacciones, "cuenta_cliente", self.get_cuenta_nro_entry().get())
                     if val is not None:
-                        self.calc(val)
+                        self.obtener_saldo(val)
         except:
             messagebox.showerror("Infor", "No existe Número de cuenta")
 
-    # Funcion que calcula los valores para procesar una solicitud
-    def calc(self, dato):
-        montos = self.generador(dato)
-        suma_montos = self.calc_monto(montos)
-        messagebox.showinfo("Resultado", "Cliente: " + str(suma_montos))
+    def obtener_saldo(self, dato):
+        saldos = self.generador(dato)
+        suma_montos = self.sumar_montos(saldos)
+        messagebox.showinfo("Resultado", "El saldo de la cuenta es de: " + str(suma_montos))
         self.destroy()
 
-    # Utilizamos la funcion reduce para sumar todos los elementos de una lista
-    # --------------Parte equivalente a programacion funcional----------------
-    def calc_monto(self, lista):
+    # Funcional
+    # Reduce suma todos los elementos de una lista mediante el método "sumar"
+    def sumar_montos(self, lista):
         return reduce(self.sumar, lista)
 
     def generador(self, dato):
-        for transacciones in dato.transacciones:
-                yield transacciones.monto
+        for transacciones in dato:
+            yield transacciones.monto
 
     def sumar(self, x, y):
         return x + y
-
